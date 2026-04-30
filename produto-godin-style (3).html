@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URBAN FLOW TEE — Godin Style</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gray: #f5f5f5;
+      --mid: #888;
+      --accent: #ff2d2d;
+      --gold: #c9a84c;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--white); border-bottom: 1px solid #eee;
+      padding: 0 2rem; display: flex; align-items: center;
+      justify-content: space-between; height: 64px; gap: 1rem;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
+      letter-spacing: 0.1em; color: var(--black); text-decoration: none;
+    }
+    nav { display: flex; gap: 1.5rem; align-items: center; }
+    nav a {
+      text-decoration: none; color: var(--black); font-size: 0.82rem;
+      font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+    .btn-entrar {
+      background: var(--black); color: var(--white) !important;
+      padding: 0.4rem 1rem; border-radius: 2rem; font-size: 0.78rem !important;
+    }
+    .btn-entrar:hover { background: #333 !important; }
+    .cart-btn {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: none; border: 1.5px solid var(--black); border-radius: 2rem;
+      padding: 0.35rem 0.9rem; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; color: var(--black); transition: all 0.2s;
+    }
+    .cart-btn:hover { background: var(--black); color: var(--white); }
+    .cart-btn .badge {
+      background: var(--accent); color: #fff; border-radius: 50%;
+      width: 20px; height: 20px; display: flex; align-items: center;
+      justify-content: center; font-size: 0.7rem; font-weight: 700;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 1rem 2rem; font-size: 0.8rem; color: var(--mid);
+      display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--mid); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--black); }
+
+    /* ── PRODUTO ── */
+    .product-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; padding: 0 2rem 4rem; max-width: 1100px; margin: 0 auto;
+    }
+    @media (max-width: 768px) { .product-wrap { grid-template-columns: 1fr; padding: 0 1rem 3rem; } }
+
+    /* Galeria */
+    .gallery { display: flex; flex-direction: column; gap: 1rem; }
+    .main-img {
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+      border-radius: 20px; height: 480px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8rem; position: relative; overflow: hidden;
+    }
+    .main-img .badge-off {
+      position: absolute; top: 1rem; left: 1rem;
+      background: var(--accent); color: #fff;
+      font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.75rem; border-radius: 2rem;
+    }
+    .main-img .badge-new {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--gold); color: #000;
+      font-weight: 700; font-size: 0.82rem; padding: 0.3rem 0.75rem; border-radius: 2rem;
+    }
+    .thumbs { display: flex; gap: 0.75rem; }
+    .thumb {
+      flex: 1; height: 90px; border-radius: 10px;
+      background: linear-gradient(135deg, #1a1a1a, #444);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; cursor: pointer; border: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .thumb.active { border-color: var(--black); }
+    .thumb:hover { border-color: #aaa; }
+
+    /* Info */
+    .prod-info { display: flex; flex-direction: column; gap: 1.2rem; }
+    .prod-label {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid);
+    }
+    .prod-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.04em; line-height: 1;
+    }
+    .prod-subtitle { font-size: 0.82rem; color: var(--mid); }
+    .prod-rating { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; }
+    .prod-rating .stars { color: #f59e0b; }
+    .prod-rating a { color: var(--mid); text-decoration: none; }
+    .prod-rating a:hover { color: var(--black); text-decoration: underline; }
+    .prod-price { display: flex; align-items: baseline; gap: 0.75rem; }
+    .prod-price strong { font-size: 2rem; font-weight: 700; }
+    .prod-price s { font-size: 1.1rem; color: var(--mid); }
+    .prod-price .save {
+      background: #dcfce7; color: #166534;
+      font-size: 0.78rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 1rem;
+    }
+
+    .divider { border: none; border-top: 1px solid #eee; }
+
+    /* Cor */
+    .option-label { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .colors { display: flex; gap: 0.5rem; }
+    .color-dot {
+      width: 32px; height: 32px; border-radius: 50%;
+      cursor: pointer; border: 2px solid transparent;
+      transition: transform 0.15s;
+    }
+    .color-dot.active { border: 3px solid var(--black); transform: scale(1.1); }
+    .color-dot:hover { transform: scale(1.05); }
+
+    /* Tamanho */
+    .sizes { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .size-btn {
+      min-width: 46px; height: 46px;
+      border: 1.5px solid #ddd; background: #fff; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 600; cursor: pointer;
+      transition: all 0.15s; padding: 0 0.5rem;
+    }
+    .size-btn:hover { border-color: var(--black); }
+    .size-btn.active { background: var(--black); color: #fff; border-color: var(--black); }
+    .size-guide { font-size: 0.75rem; color: var(--mid); text-decoration: underline; cursor: pointer; margin-top: 0.25rem; display: inline-block; }
+
+    /* Qty + Botões */
+    .qty-row { display: flex; align-items: center; gap: 0.75rem; }
+    .qty-ctrl {
+      display: flex; align-items: center; gap: 0; border: 1.5px solid #ddd; border-radius: 2rem; overflow: hidden;
+    }
+    .qty-ctrl button {
+      width: 38px; height: 38px; background: none; border: none;
+      font-size: 1.1rem; cursor: pointer; transition: background 0.15s;
+    }
+    .qty-ctrl button:hover { background: var(--gray); }
+    .qty-ctrl span { min-width: 36px; text-align: center; font-weight: 600; }
+
+    .btn-add {
+      flex: 1; background: var(--black); color: #fff;
+      border: none; border-radius: 2rem; padding: 0.9rem 1.5rem;
+      font-size: 0.92rem; font-weight: 700; cursor: pointer;
+      transition: background 0.2s; letter-spacing: 0.04em;
+    }
+    .btn-add:hover { background: #333; }
+    .btn-add.added { background: #16a34a; }
+
+    .btn-buy {
+      width: 100%; background: var(--accent); color: #fff;
+      border: none; border-radius: 2rem; padding: 0.9rem;
+      font-size: 0.92rem; font-weight: 700; cursor: pointer;
+      transition: background 0.2s; letter-spacing: 0.04em;
+    }
+    .btn-buy:hover { background: #cc0000; }
+
+    .perks { display: flex; flex-direction: column; gap: 0.4rem; }
+    .perk { font-size: 0.82rem; color: #555; display: flex; align-items: center; gap: 0.5rem; }
+
+    /* Frete */
+    .frete-box { background: var(--gray); border-radius: var(--radius); padding: 1rem; }
+    .frete-box p { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .frete-row { display: flex; gap: 0.5rem; }
+    .frete-row input {
+      flex: 1; border: 1.5px solid #ddd; border-radius: 2rem; padding: 0.5rem 1rem; font-size: 0.85rem; font-family: inherit;
+    }
+    .frete-row button {
+      background: var(--black); color: #fff; border: none; border-radius: 2rem;
+      padding: 0.5rem 1.2rem; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+    }
+    #frete-result { font-size: 0.8rem; margin-top: 0.5rem; color: #555; }
+
+    /* Accordion */
+    .accordion { border-top: 1px solid #eee; }
+    .acc-item { border-bottom: 1px solid #eee; }
+    .acc-btn {
+      width: 100%; background: none; border: none; padding: 1rem 0;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.88rem; font-weight: 600; cursor: pointer; text-align: left;
+    }
+    .acc-btn span { transition: transform 0.2s; }
+    .acc-btn.open span { transform: rotate(180deg); }
+    .acc-body { display: none; padding-bottom: 1rem; font-size: 0.85rem; line-height: 1.8; color: #555; }
+    .acc-body.open { display: block; }
+    .acc-body table { width: 100%; border-collapse: collapse; margin-bottom: 0.5rem; }
+    .acc-body th, .acc-body td { border: 1px solid #ddd; padding: 0.5rem 0.75rem; font-size: 0.82rem; text-align: left; }
+    .acc-body th { background: var(--gray); font-weight: 600; }
+
+    /* ── AVALIAÇÕES ── */
+    .section-wrap { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: 0.04em; margin-bottom: 1.5rem; }
+
+    .rating-overview { display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .rating-big { text-align: center; }
+    .rating-big strong { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; }
+    .rating-big .stars { color: #f59e0b; font-size: 1rem; }
+    .rating-bars { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+    .bar-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; }
+    .bar-row .bar-bg { flex: 1; height: 6px; background: #eee; border-radius: 3px; overflow: hidden; }
+    .bar-row .bar-fill { height: 100%; background: #f59e0b; border-radius: 3px; }
+
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .review-card { background: var(--gray); border-radius: var(--radius); padding: 1.5rem; }
+    .stars { color: #f59e0b; }
+    .review-card blockquote { font-size: 0.88rem; line-height: 1.7; color: #444; margin: 0.75rem 0 1rem; font-style: italic; }
+    .reviewer { display: flex; align-items: center; gap: 0.75rem; }
+    .reviewer-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--black); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.82rem; }
+    .reviewer-name strong { display: block; font-size: 0.82rem; }
+    .reviewer-name small { color: var(--mid); font-size: 0.72rem; }
+    .verified { font-size: 0.7rem; color: #16a34a; font-weight: 600; }
+
+    /* ── RELACIONADOS ── */
+    .related { padding: 4rem 2rem; background: var(--gray); }
+    .related .section-title { margin-bottom: 1.5rem; }
+    .rel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
+    .rel-card { background: #fff; border-radius: var(--radius); overflow: hidden; transition: transform 0.2s; }
+    .rel-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .rel-img { height: 220px; background: linear-gradient(135deg, #1a1a1a, #444); display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; }
+    .rel-badge { position: absolute; top: 0.5rem; left: 0.5rem; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 1rem; }
+    .rel-info { padding: 0.9rem; }
+    .rel-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; margin-bottom: 0.3rem; }
+    .rel-price { display: flex; gap: 0.5rem; align-items: center; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .rel-price strong { font-weight: 700; }
+    .rel-price s { color: var(--mid); font-size: 0.8rem; }
+    .btn-rel { display: block; text-align: center; background: var(--black); color: #fff; padding: 0.5rem; border-radius: 2rem; font-size: 0.78rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .btn-rel:hover { background: #333; }
+
+    /* ── FOOTER ── */
+    footer { background: #050505; color: rgba(255,255,255,0.5); padding: 2rem; text-align: center; font-size: 0.78rem; }
+    footer .logo { color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.1em; display: block; margin-bottom: 0.5rem; text-decoration: none; }
+    footer p { line-height: 1.7; margin-bottom: 0.5rem; }
+    .foot-pays { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.75rem; }
+    .foot-pay { background: rgba(255,255,255,0.06); border-radius: 4px; padding: 0.2rem 0.5rem; font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+
+    /* ── MODAL TAMANHOS ── */
+    #modal-size {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      z-index: 9000; align-items: center; justify-content: center;
+    }
+    #modal-size.open { display: flex; }
+    .modal-box {
+      background: #fff; border-radius: 16px; padding: 2rem;
+      max-width: 480px; width: 90%; position: relative;
+    }
+    .modal-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; letter-spacing: 0.06em; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.3rem; cursor: pointer; }
+    .modal-box table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .modal-box th, .modal-box td { border: 1px solid #ddd; padding: 0.6rem 0.75rem; text-align: center; }
+    .modal-box th { background: var(--gray); font-weight: 600; }
+    .modal-tip { font-size: 0.78rem; color: var(--mid); margin-top: 0.75rem; }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #111; color: #fff; padding: 0.75rem 1.5rem;
+      border-radius: 2rem; font-size: 0.88rem; font-weight: 600;
+      z-index: 9999; transition: transform 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3); white-space: nowrap;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="index.html" class="logo">GODIN STYLE</a>
+  <nav>
+    <a href="index.html#categorias">Coleções</a>
+    <a href="index.html#produtos">Produtos</a>
+    <a href="index.html#sobre">Sobre</a>
+    <a href="index.html#checkout">Comprar</a>
+    <a href="index.html#checkout" class="btn-entrar">Entrar</a>
+  </nav>
+  <button class="cart-btn" onclick="goToCart()">
+    🛒 Carrinho <span class="badge" id="cart-count">0</span>
+  </button>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Início</a> ›
+  <a href="index.html#categorias">Camisetas</a> ›
+  <span>Urban Flow Tee</span>
+</div>
+
+<!-- PRODUTO -->
+<div class="product-wrap">
+  <!-- GALERIA -->
+  <div class="gallery">
+    <div class="main-img">
+      👕
+      <div class="badge-off">-30% OFF</div>
+      <div class="badge-new">✦ NOVO</div>
+    </div>
+    <div class="thumbs">
+      <div class="thumb active">👕</div>
+      <div class="thumb">🖤</div>
+      <div class="thumb">✦</div>
+      <div class="thumb">📐</div>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="prod-info">
+    <div>
+      <p class="prod-label">✦ GODIN STYLE — COLEÇÃO VERÃO 2025</p>
+      <h1 class="prod-title">URBAN FLOW TEE</h1>
+      <p class="prod-subtitle">Camiseta Streetwear Premium · Edição Limitada</p>
+    </div>
+
+    <div class="prod-rating">
+      <span class="stars">★★★★★</span>
+      <strong>4.9</strong>
+      <a href="#reviews">(238 avaliações)</a>
+      <span style="color:#16a34a;font-size:0.78rem;font-weight:600;">✓ Compra verificada</span>
+    </div>
+
+    <div class="prod-price">
+      <strong>R$ 149,90</strong>
+      <s>R$ 219,90</s>
+      <span class="save">ECONOMIZE R$ 70,00</span>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- COR -->
+    <div>
+      <p class="option-label">Cor — <span id="color-name">Preto</span></p>
+      <div class="colors">
+        <div class="color-dot active" style="background:#111;" title="Preto" data-color="Preto" onclick="selectColor(this)"></div>
+        <div class="color-dot" style="background:#f5f5f5;border:1.5px solid #ccc;" title="Branco" data-color="Branco" onclick="selectColor(this)"></div>
+        <div class="color-dot" style="background:#4a5568;" title="Cinza" data-color="Cinza" onclick="selectColor(this)"></div>
+        <div class="color-dot" style="background:#2d3748;" title="Navy" data-color="Navy" onclick="selectColor(this)"></div>
+      </div>
+    </div>
+
+    <!-- TAMANHO -->
+    <div>
+      <p class="option-label">Tamanho — <span id="size-name">Selecione</span></p>
+      <div class="sizes">
+        <button class="size-btn" data-size="PP" onclick="selectSize(this)">PP</button>
+        <button class="size-btn" data-size="P" onclick="selectSize(this)">P</button>
+        <button class="size-btn" data-size="M" onclick="selectSize(this)">M</button>
+        <button class="size-btn" data-size="G" onclick="selectSize(this)">G</button>
+        <button class="size-btn" data-size="GG" onclick="selectSize(this)">GG</button>
+        <button class="size-btn" data-size="XGG" onclick="selectSize(this)">XGG</button>
+      </div>
+      <span class="size-guide" onclick="openModal()">📏 Guia de medidas</span>
+    </div>
+
+    <!-- QTY + BOTÕES -->
+    <div class="qty-row">
+      <div class="qty-ctrl">
+        <button onclick="changeQty(-1)">−</button>
+        <span id="qty-display">1</span>
+        <button onclick="changeQty(1)">+</button>
+      </div>
+      <button class="btn-add" id="btn-add" onclick="addToCart()">🛒 Adicionar ao Carrinho</button>
+    </div>
+    <button class="btn-buy" onclick="buyNow()">⚡ Comprar Agora</button>
+
+    <!-- PERKS -->
+    <div class="perks">
+      <div class="perk">🚚 Frete grátis acima de R$ 199</div>
+      <div class="perk">🔄 30 dias para troca grátis</div>
+      <div class="perk">🔒 Pagamento 100% seguro SSL</div>
+      <div class="perk">💳 12x sem juros no cartão</div>
+    </div>
+
+    <!-- FRETE -->
+    <div class="frete-box">
+      <p>📦 Calcular Frete</p>
+      <div class="frete-row">
+        <input type="text" id="cep-frete" placeholder="00000-000" maxlength="9" />
+        <button onclick="calcFrete()">Calcular</button>
+      </div>
+      <div id="frete-result"></div>
+    </div>
+
+    <!-- ACCORDION -->
+    <div class="accordion">
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          📄 Descrição do Produto <span>⌄</span>
+        </button>
+        <div class="acc-body">
+          A <strong>Urban Flow Tee</strong> é a peça definitiva para quem vive o streetwear com atitude. Desenvolvida com malha premium de alta gramatura, oferece conforto todo o dia com um caimento perfeito que valoriza qualquer silhueta.<br><br>
+          Estampa exclusiva em serigrafia texturizada, resistente a lavagens repetidas. Design pensado para durar — sem desbotamento, sem deformação.
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          🧵 Composição e Cuidados <span>⌄</span>
+        </button>
+        <div class="acc-body">
+          <table>
+            <tr><th>Material</th><td>100% Algodão Penteado</td></tr>
+            <tr><th>Gramatura</th><td>240 g/m²</td></tr>
+            <tr><th>Lavagem</th><td>Máquina até 30°C</td></tr>
+            <tr><th>Secagem</th><td>À sombra</td></tr>
+          </table>
+          • Não usar alvejante · Não torcer · Passar ferro na parte interna · Lavar avesso
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          🔄 Trocas e Devoluções <span>⌄</span>
+        </button>
+        <div class="acc-body">
+          • 30 dias corridos a partir do recebimento<br>
+          • Produto deve estar sem uso, com etiquetas<br>
+          • Primeira troca com frete grátis<br>
+          • Reembolso em até 5 dias úteis após aprovação<br>
+          • Solicitações via WhatsApp ou e-mail
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AVALIAÇÕES -->
+<div class="section-wrap" id="reviews">
+  <p class="section-label">/ Avaliações</p>
+  <h2 class="section-title">O QUE FALAM DA PEÇA</h2>
+  <div class="rating-overview">
+    <div class="rating-big">
+      <strong>4.9</strong>
+      <div class="stars">★★★★★</div>
+      <small style="color:var(--mid);font-size:0.75rem;">238 avaliações</small>
+    </div>
+    <div class="rating-bars">
+      <div class="bar-row"><span>5★</span><div class="bar-bg"><div class="bar-fill" style="width:88%"></div></div><span>212</span></div>
+      <div class="bar-row"><span>4★</span><div class="bar-bg"><div class="bar-fill" style="width:8%"></div></div><span>18</span></div>
+      <div class="bar-row"><span>3★</span><div class="bar-bg"><div class="bar-fill" style="width:2%"></div></div><span>5</span></div>
+      <div class="bar-row"><span>2★</span><div class="bar-bg"><div class="bar-fill" style="width:1%"></div></div><span>2</span></div>
+      <div class="bar-row"><span>1★</span><div class="bar-bg"><div class="bar-fill" style="width:0.5%"></div></div><span>1</span></div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Qualidade incrível! O tecido é muito macio e o caimento perfeito. Comprei G e ficou exatamente como esperava. Já é minha terceira compra na Godin."</blockquote>
+      <div class="reviewer">
+        <div class="reviewer-avatar">ML</div>
+        <div class="reviewer-name"><strong>Mateus Lima</strong><small>@mateusdrip · São Paulo</small></div>
+      </div>
+      <div class="verified" style="margin-top:0.5rem;">✓ Compra verificada</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Chegou rapidíssimo, em 3 dias! Embalagem top, com papel de seda e cartão. A camiseta na cor preta é ainda melhor pessoalmente. Super recomendo!"</blockquote>
+      <div class="reviewer">
+        <div class="reviewer-avatar">JS</div>
+        <div class="reviewer-name"><strong>Julia Santos</strong><small>@julinha.s · Rio de Janeiro</small></div>
+      </div>
+      <div class="verified" style="margin-top:0.5rem;">✓ Compra verificada</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Todo mundo pergunta onde comprei! A estampa é única, não encontro nada igual em outras marcas. Já comprei nas duas cores e as duas são perfeitas."</blockquote>
+      <div class="reviewer">
+        <div class="reviewer-avatar">PR</div>
+        <div class="reviewer-name"><strong>Pedro Rocha</strong><small>@pedrostyle · Curitiba</small></div>
+      </div>
+      <div class="verified" style="margin-top:0.5rem;">✓ Compra verificada</div>
+    </div>
+  </div>
+</div>
+
+<!-- RELACIONADOS -->
+<section class="related">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-label">/ Você Também Vai Curtir</p>
+    <h2 class="section-title">MAIS VENDIDOS</h2>
+    <div class="rel-grid">
+      <div class="rel-card">
+        <div class="rel-img"><div class="rel-badge">-25%</div>🧥</div>
+        <div class="rel-info"><h4>Dark Wave Hoodie</h4><div class="rel-price"><strong>R$ 289,90</strong><s>R$ 389,90</s></div><a href="#" class="btn-rel">Ver Produto</a></div>
+      </div>
+      <div class="rel-card">
+        <div class="rel-img">👖</div>
+        <div class="rel-info"><h4>Street Cargo Pants</h4><div class="rel-price"><strong>R$ 219,90</strong><s>R$ 299,90</s></div><a href="#" class="btn-rel">Ver Produto</a></div>
+      </div>
+      <div class="rel-card">
+        <div class="rel-img"><div class="rel-badge">-20%</div>🧢</div>
+        <div class="rel-info"><h4>Shadow Cap Snapback</h4><div class="rel-price"><strong>R$ 99,90</strong><s>R$ 129,90</s></div><a href="#" class="btn-rel">Ver Produto</a></div>
+      </div>
+      <div class="rel-card">
+        <div class="rel-img">👕</div>
+        <div class="rel-info"><h4>Urban Flow Tee Cinza</h4><div class="rel-price"><strong>R$ 149,90</strong><s>R$ 219,90</s></div><a href="#" class="btn-rel">Ver Produto</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="logo">GODIN STYLE</a>
+  <p>Moda jovem premium nascida nas ruas do Brasil. Estilo, qualidade e atitude em cada peça desde 2020.</p>
+  <div class="foot-pays">
+    <span class="foot-pay">SSL SECURE</span>
+    <span class="foot-pay">LGPD</span>
+    <span class="foot-pay">PIX</span>
+    <span class="foot-pay">CARTÃO</span>
+    <span class="foot-pay">BOLETO</span>
+  </div>
+  <p style="margin-top:1rem;font-size:0.72rem;">© 2025 Godin Style™ · Todos os direitos reservados</p>
+</footer>
+
+<!-- MODAL TAMANHOS -->
+<div id="modal-size">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>GUIA DE MEDIDAS</h3>
+    <table>
+      <tr><th>Tamanho</th><th>Busto (cm)</th><th>Comprimento (cm)</th><th>Ombro (cm)</th></tr>
+      <tr><td>PP</td><td>88–92</td><td>66</td><td>42</td></tr>
+      <tr><td>P</td><td>92–96</td><td>68</td><td>44</td></tr>
+      <tr><td>M</td><td>96–100</td><td>70</td><td>46</td></tr>
+      <tr><td>G</td><td>100–106</td><td>72</td><td>48</td></tr>
+      <tr><td>GG</td><td>106–112</td><td>74</td><td>50</td></tr>
+    </table>
+    <p class="modal-tip">ℹ️ Em dúvida entre tamanhos, escolha o maior para um caimento mais street.</p>
+  </div>
+</div>
+
+<div id="toast">✓ Produto adicionado!</div>
+
+<script>
+// ═══════════════════════════════════════════
+//  ESTADO LOCAL
+// ═══════════════════════════════════════════
+const CART_KEY = 'godin_cart';
+let selectedSize = '';
+let selectedColor = 'Preto';
+let qty = 1;
+
+// ─── Carrinho ───
+function getCart() {
+  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+  catch { return []; }
+}
+function saveCart(c) { localStorage.setItem(CART_KEY, JSON.stringify(c)); }
+
+function updateBadge() {
+  const count = getCart().reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cart-count').textContent = count;
+}
+
+// ─── Cor ───
+function selectColor(el) {
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+  el.classList.add('active');
+  selectedColor = el.dataset.color;
+  document.getElementById('color-name').textContent = selectedColor;
+}
+
+// ─── Tamanho ───
+function selectSize(el) {
+  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  selectedSize = el.dataset.size;
+  document.getElementById('size-name').textContent = selectedSize;
+}
+
+// ─── Quantidade ───
+function changeQty(delta) {
+  qty = Math.max(1, qty + delta);
+  document.getElementById('qty-display').textContent = qty;
+}
+
+// ─── Adicionar ao Carrinho ───
+function addToCart() {
+  if (!selectedSize) {
+    showToast('⚠️ Selecione um tamanho!');
+    return;
+  }
+  const id = btoa('urban-flow-tee-' + selectedSize + '-' + selectedColor).replace(/=/g, '').slice(0, 16);
+  const cart = getCart();
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ id, name: 'Urban Flow Tee', price: 149.90, qty, size: selectedSize, color: selectedColor });
+  }
+  saveCart(cart);
+  updateBadge();
+  showToast('✓ Produto adicionado ao carrinho!');
+
+  const btn = document.getElementById('btn-add');
+  btn.textContent = '✓ Adicionado!';
+  btn.classList.add('added');
+  setTimeout(() => {
+    btn.textContent = '🛒 Adicionar ao Carrinho';
+    btn.classList.remove('added');
+  }, 2200);
+}
+
+// ─── Comprar Agora ───
+function buyNow() {
+  if (!selectedSize) { showToast('⚠️ Selecione um tamanho!'); return; }
+  addToCart();
+  setTimeout(() => {
+    window.location.href = 'index.html#checkout';
+  }, 400);
+}
+
+// ─── Ir ao carrinho ───
+function goToCart() {
+  window.location.href = 'index.html#checkout';
+}
+
+// ─── Calcular frete ───
+function calcFrete() {
+  const cep = document.getElementById('cep-frete').value.replace(/\D/g, '');
+  const result = document.getElementById('frete-result');
+  if (cep.length !== 8) { result.textContent = '⚠️ CEP inválido.'; return; }
+  result.textContent = '⏳ Consultando...';
+  fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then(r => r.json())
+    .then(d => {
+      if (d.erro) { result.textContent = '⚠️ CEP não encontrado.'; return; }
+      result.innerHTML = `🚚 Entrega para <strong>${d.localidade}/${d.uf}</strong> — Grátis (acima de R$ 199) · Prazo: 3–7 dias úteis`;
+    }).catch(() => { result.textContent = '⚠️ Erro ao consultar. Tente novamente.'; });
+}
+
+// Máscara CEP
+document.getElementById('cep-frete').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g, '').slice(0,8);
+  if (v.length > 5) v = v.slice(0,5) + '-' + v.slice(5);
+  this.value = v;
+});
+
+// ─── Accordion ───
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-btn').forEach(b => b.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); btn.classList.add('open'); }
+}
+
+// ─── Modal ───
+function openModal() { document.getElementById('modal-size').classList.add('open'); }
+function closeModal() { document.getElementById('modal-size').classList.remove('open'); }
+document.getElementById('modal-size').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ─── Thumbs ───
+document.querySelectorAll('.thumb').forEach(t => {
+  t.addEventListener('click', function() {
+    document.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ─── Toast ───
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ─── INIT ───
+updateBadge();
+</script>
+</body>
+</html>
