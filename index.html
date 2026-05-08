@@ -1,856 +1,293 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Godin Style — Vista Sua Identidade</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Godin Style — Vista Sua Identidade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--white:#fff;--gray:#f5f5f5;--mid:#888;--accent:#ff2d2d;--gold:#c9a84c;--radius:12px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
 
-    :root {
-      --black: #0a0a0a;
-      --white: #ffffff;
-      --gray: #f5f5f5;
-      --mid: #888;
-      --accent: #ff2d2d;
-      --gold: #c9a84c;
-      --radius: 12px;
-    }
+/* TOPBAR */
+.topbar{background:var(--black);color:var(--white);text-align:center;font-size:0.72rem;padding:0.5rem 1rem;letter-spacing:0.08em;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.topbar span{opacity:.85}
 
-    html { scroll-behavior: smooth; }
+/* HEADER */
+header{position:sticky;top:0;z-index:1000;background:var(--white);border-bottom:1px solid #eee;padding:0 1.25rem;display:flex;align-items:center;justify-content:space-between;height:60px;gap:.75rem}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
+nav{display:flex;gap:1.25rem;align-items:center}
+nav a{text-decoration:none;color:var(--black);font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+nav a:hover{color:var(--accent)}
+.btn-entrar{background:var(--black);color:var(--white)!important;padding:.4rem 1rem;border-radius:2rem;font-size:.78rem!important}
+.btn-entrar:hover{background:#333!important}
+.cart-btn{display:flex;align-items:center;gap:.4rem;background:none;border:1.5px solid var(--black);border-radius:2rem;padding:.35rem .9rem;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;color:var(--black);transition:all .2s;white-space:nowrap}
+.cart-btn:hover{background:var(--black);color:var(--white)}
+.cart-btn .badge{background:var(--accent);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700}
+/* hamburger */
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:.25rem;font-size:1.5rem;color:var(--black)}
+.mobile-nav{display:none;position:fixed;inset:0;background:var(--black);z-index:2000;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity .3s}
+.mobile-nav.open{display:flex;animation:fadeIn .25s ease}
+.mobile-nav a{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--white);text-decoration:none;letter-spacing:.08em;transition:color .2s}
+.mobile-nav a:hover{color:var(--gold)}
+.mobile-nav-close{position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--black);
-      overflow-x: hidden;
-    }
+/* HERO */
+.hero{min-height:88vh;background:var(--black);display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 1.5rem;position:relative;overflow:hidden}
+.hero::before{content:'GODIN';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:clamp(7rem,28vw,22rem);color:rgba(255,255,255,.03);letter-spacing:.05em;pointer-events:none;user-select:none;animation:pulseText 6s ease-in-out infinite}
+@keyframes pulseText{0%,100%{opacity:.03}50%{opacity:.06}}
+.hero-badge{display:inline-block;background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem 1rem;border-radius:2rem;margin-bottom:1.5rem;animation:slideDown .6s ease both}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,11vw,7rem);color:var(--white);line-height:1;letter-spacing:.04em;margin-bottom:1.2rem;animation:slideDown .7s .1s ease both}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{color:rgba(255,255,255,.65);font-size:.95rem;max-width:460px;margin:0 auto 2rem;line-height:1.7;animation:slideDown .7s .2s ease both}
+.hero-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;animation:slideDown .7s .3s ease both}
+.btn-primary{background:var(--white);color:var(--black);padding:.85rem 1.75rem;border-radius:2rem;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-decoration:none;transition:all .2s}
+.btn-primary:hover{background:var(--gold)}
+.btn-outline{border:1.5px solid rgba(255,255,255,.35);color:var(--white);padding:.85rem 1.75rem;border-radius:2rem;font-weight:500;font-size:.9rem;text-decoration:none;transition:all .2s}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.hero-stats{display:flex;gap:2rem;justify-content:center;margin-top:3rem;flex-wrap:wrap;animation:slideDown .7s .4s ease both}
+.stat{text-align:center}
+.stat strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--gold)}
+.stat span{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.06em}
+@keyframes slideDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-    /* ── TOPBAR ── */
-    .topbar {
-      background: var(--black);
-      color: var(--white);
-      text-align: center;
-      font-size: 0.72rem;
-      padding: 0.5rem 1rem;
-      letter-spacing: 0.08em;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .topbar span { opacity: 0.85; }
+/* PRODUTO DESTAQUE */
+.featured{padding:3rem 1.5rem;background:var(--gray);display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+.featured-img{width:min(320px,100%);height:380px;background:linear-gradient(135deg,#1a1a1a 0%,#333 100%);border-radius:20px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0;transition:transform .3s}
+.featured-img:hover{transform:scale(1.02)}
+.featured-img .shirt-art{font-size:5.5rem;opacity:.5}
+.badge-off{position:absolute;top:1rem;left:1rem;background:var(--accent);color:#fff;font-weight:700;font-size:.8rem;padding:.3rem .7rem;border-radius:2rem}
+.badge-new{position:absolute;top:1rem;right:1rem;background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:.3rem .7rem;border-radius:2rem}
+.featured-info{max-width:400px}
+.featured-info small{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
+.featured-info h3{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;letter-spacing:.04em;margin:.3rem 0 .5rem}
+.featured-price{display:flex;align-items:center;gap:.75rem;margin-bottom:1.2rem}
+.featured-price strong{font-size:1.5rem;font-weight:700}
+.featured-price s{color:var(--mid);font-size:1rem}
+.btn-ver{display:inline-block;background:var(--black);color:var(--white);padding:.85rem 2rem;border-radius:2rem;font-weight:700;font-size:.9rem;text-decoration:none;transition:background .2s}
+.btn-ver:hover{background:#333}
 
-    /* ── HEADER ── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: var(--white);
-      border-bottom: 1px solid #eee;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      gap: 1rem;
-    }
+/* TICKER */
+.ticker-wrap{background:var(--black);color:var(--white);padding:.75rem 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;animation:ticker 22s linear infinite}
+.ticker-inner span{margin:0 2rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.ticker-inner span::after{content:' ✦';color:var(--gold)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
-      letter-spacing: 0.1em;
-      color: var(--black);
-      text-decoration: none;
-    }
+/* CATEGORIAS */
+#categorias{padding:4rem 1.5rem}
+.section-label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:.5rem}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,6vw,3.5rem);letter-spacing:.04em;margin-bottom:2rem}
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.85rem}
+.cat-card{background:var(--gray);border-radius:var(--radius);padding:1.5rem 1.25rem;display:flex;flex-direction:column;gap:.4rem;text-decoration:none;color:var(--black);transition:all .25s;position:relative;overflow:hidden}
+.cat-card:hover{background:var(--black);color:var(--white);transform:translateY(-3px)}
+.cat-card .icon{font-size:1.8rem}
+.cat-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.06em}
+.cat-card small{font-size:.72rem;opacity:.6}
+.cat-arrow{position:absolute;top:1rem;right:1rem;font-size:.9rem;opacity:.4}
 
-    nav { display: flex; gap: 1.5rem; align-items: center; }
-    nav a {
-      text-decoration: none;
-      color: var(--black);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    nav a:hover { color: var(--accent); }
+/* PRODUTOS — CARROSSEL */
+#produtos{padding:4rem 0;background:var(--gray)}
+#produtos .inner-pad{padding:0 1.5rem}
+.filter-tabs{display:flex;gap:.5rem;flex-wrap:nowrap;overflow-x:auto;padding-bottom:.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.filter-tabs::-webkit-scrollbar{display:none}
+.tab{padding:.4rem 1.1rem;border-radius:2rem;border:1.5px solid #ddd;background:#fff;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--black);white-space:nowrap;flex-shrink:0}
+.tab.active,.tab:hover{background:var(--black);color:var(--white);border-color:var(--black)}
 
-    .btn-entrar {
-      background: var(--black);
-      color: var(--white) !important;
-      padding: 0.4rem 1rem;
-      border-radius: 2rem;
-      font-size: 0.78rem !important;
-    }
-    .btn-entrar:hover { background: #333 !important; color: var(--white) !important; }
+/* carrossel wrapper */
+.carousel-wrap{position:relative;margin-top:1.5rem}
+.carousel-track{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 1.5rem 1rem;scrollbar-width:none}
+.carousel-track::-webkit-scrollbar{display:none}
+.prod-card{min-width:220px;width:220px;background:var(--white);border-radius:var(--radius);overflow:hidden;scroll-snap-align:start;transition:transform .25s,box-shadow .25s;flex-shrink:0}
+.prod-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
+.prod-img{height:260px;background:linear-gradient(135deg,#1a1a1a,#444);display:flex;align-items:center;justify-content:center;font-size:4.5rem;position:relative}
+.prod-img .prod-badge{position:absolute;top:.6rem;left:.6rem;background:var(--accent);color:#fff;font-size:.68rem;font-weight:700;padding:.18rem .55rem;border-radius:1rem}
+.prod-info{padding:1rem}
+.prod-info small{font-size:.68rem;color:var(--mid);letter-spacing:.08em;text-transform:uppercase}
+.prod-info h4{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;margin:.2rem 0}
+.prod-price{display:flex;align-items:center;gap:.4rem;margin:.4rem 0 .65rem}
+.prod-price strong{font-size:.95rem;font-weight:700}
+.prod-price s{font-size:.78rem;color:var(--mid)}
+.btn-prod{display:block;text-align:center;background:var(--black);color:var(--white);padding:.55rem;border-radius:2rem;font-size:.78rem;font-weight:600;text-decoration:none;transition:background .2s}
+.btn-prod:hover{background:#333}
+/* dots */
+.carousel-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.75rem}
+.dot{width:8px;height:8px;border-radius:50%;background:#ccc;cursor:pointer;transition:background .2s,transform .2s}
+.dot.active{background:var(--black);transform:scale(1.2)}
+/* nav arrows */
+.car-btn{display:none;position:absolute;top:50%;transform:translateY(-60%);background:var(--white);border:1.5px solid #ddd;border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:1rem;align-items:center;justify-content:center;z-index:10;transition:all .2s}
+.car-btn:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+.car-prev{left:.25rem}
+.car-next{right:.25rem}
+@media(min-width:600px){.car-btn{display:flex}}
 
-    .cart-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: none;
-      border: 1.5px solid var(--black);
-      border-radius: 2rem;
-      padding: 0.35rem 0.9rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--black);
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .cart-btn:hover { background: var(--black); color: var(--white); }
-    .cart-btn .badge {
-      background: var(--accent);
-      color: #fff;
-      border-radius: 50%;
-      width: 20px; height: 20px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 700;
-    }
+/* SOBRE */
+#sobre{padding:5rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap}
+.sobre-text{max-width:460px}
+.sobre-text h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,7vw,4rem);line-height:1;margin-bottom:1rem}
+.sobre-text h2 em{color:var(--accent);font-style:normal}
+.sobre-text p{color:#555;line-height:1.8;margin-bottom:1.5rem;font-size:.95rem}
+.sobre-img{width:min(320px,100%);height:360px;background:var(--black);border-radius:20px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--gold);letter-spacing:.1em;flex-shrink:0}
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 90vh;
-      background: var(--black);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 4rem 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: 'GODIN';
-      position: absolute;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(8rem, 25vw, 22rem);
-      color: rgba(255,255,255,0.03);
-      letter-spacing: 0.05em;
-      pointer-events: none;
-      user-select: none;
-    }
-    .hero-badge {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.3rem 1rem;
-      border-radius: 2rem;
-      margin-bottom: 1.5rem;
-    }
-    .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 10vw, 7rem);
-      color: var(--white);
-      line-height: 1;
-      letter-spacing: 0.04em;
-      margin-bottom: 1.2rem;
-    }
-    .hero h1 em { color: var(--gold); font-style: normal; }
-    .hero p {
-      color: rgba(255,255,255,0.65);
-      font-size: 1rem;
-      max-width: 480px;
-      margin: 0 auto 2rem;
-      line-height: 1.7;
-    }
-    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--white);
-      color: var(--black);
-      padding: 0.85rem 2rem;
-      border-radius: 2rem;
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .btn-primary:hover { background: var(--gold); color: var(--black); }
-    .btn-outline {
-      border: 1.5px solid rgba(255,255,255,0.35);
-      color: var(--white);
-      padding: 0.85rem 2rem;
-      border-radius: 2rem;
-      font-weight: 500;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+/* COMO FUNCIONA */
+.how{background:var(--black);color:var(--white);padding:4.5rem 1.5rem;text-align:center}
+.how .section-label{color:rgba(255,255,255,.4)}
+.how .section-title{color:var(--white)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.75rem;margin-top:2rem}
+.step{padding:1.25rem}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:rgba(255,255,255,.1);line-height:1}
+.step-icon{font-size:1.8rem;margin:.4rem 0}
+.step h4{font-weight:700;margin-bottom:.4rem;font-size:.95rem}
+.step p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7}
 
-    .hero-stats {
-      display: flex;
-      gap: 3rem;
-      justify-content: center;
-      margin-top: 3rem;
-      flex-wrap: wrap;
-    }
-    .stat { text-align: center; }
-    .stat strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--gold); }
-    .stat span { font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; }
+/* DEPOIMENTOS */
+.reviews{padding:4rem 1.5rem;background:var(--gray)}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin-top:2rem}
+.review-card{background:var(--white);border-radius:var(--radius);padding:1.4rem;transition:transform .2s;cursor:default}
+.review-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.stars{color:#f59e0b;font-size:.9rem;margin-bottom:.6rem}
+.review-card blockquote{font-size:.87rem;line-height:1.7;color:#444;margin-bottom:.9rem;font-style:italic}
+.reviewer{display:flex;align-items:center;gap:.65rem}
+.reviewer-avatar{width:36px;height:36px;border-radius:50%;background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0}
+.reviewer-name strong{display:block;font-size:.82rem}
+.reviewer-name small{color:var(--mid);font-size:.72rem}
 
-    /* ── PRODUTO DESTAQUE ── */
-    .featured {
-      padding: 4rem 2rem;
-      background: var(--gray);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-    .featured-img {
-      width: 340px; height: 400px;
-      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .featured-img .shirt-art {
-      font-size: 6rem;
-      opacity: 0.5;
-    }
-    .badge-off {
-      position: absolute;
-      top: 1rem; left: 1rem;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.8rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 2rem;
-    }
-    .badge-new {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      background: var(--gold);
-      color: #000;
-      font-weight: 700;
-      font-size: 0.8rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 2rem;
-    }
-    .featured-info { max-width: 420px; }
-    .featured-info small {
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
-    .featured-info h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem;
-      letter-spacing: 0.04em;
-      margin: 0.3rem 0 0.5rem;
-    }
-    .featured-price { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem; }
-    .featured-price strong { font-size: 1.5rem; font-weight: 700; }
-    .featured-price s { color: var(--mid); font-size: 1rem; }
-    .btn-ver {
-      display: inline-block;
-      background: var(--black);
-      color: var(--white);
-      padding: 0.85rem 2rem;
-      border-radius: 2rem;
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .btn-ver:hover { background: #333; }
+/* CHECKOUT */
+#checkout{padding:4rem 1.5rem;background:var(--white)}
+.checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;max-width:940px;margin:2rem auto 0}
+.cart-summary-box{background:var(--gray);border-radius:var(--radius);padding:1.4rem}
+.cart-summary-box h3{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.06em;margin-bottom:1rem}
+.cart-empty{text-align:center;color:var(--mid);padding:2rem 0;font-size:.9rem;line-height:1.6}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid #e5e5e5;gap:.65rem;font-size:.86rem}
+.cart-item-name{flex:1}
+.cart-item-name strong{display:block;margin-bottom:.1rem}
+.cart-item-name small{color:var(--mid);font-size:.73rem}
+.cart-qty{display:flex;align-items:center;gap:.35rem}
+.qty-btn{width:26px;height:26px;border:1.5px solid #ccc;background:#fff;border-radius:50%;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.qty-btn:hover{background:var(--black);color:#fff;border-color:var(--black)}
+.cart-item-price{text-align:right}
+.cart-item-price strong{display:block}
+.remove-btn{background:none;border:none;color:var(--accent);font-size:.7rem;cursor:pointer;text-decoration:underline;margin-top:.2rem}
+.coupon-row{display:flex;gap:.5rem;margin:1rem 0}
+.coupon-row input{flex:1;border:1.5px solid #ddd;border-radius:2rem;padding:.5rem 1rem;font-size:.85rem}
+.coupon-row button{background:var(--black);color:#fff;border:none;border-radius:2rem;padding:.5rem 1.2rem;font-size:.82rem;font-weight:600;cursor:pointer}
+.totals{margin-top:.5rem}
+.totals-row{display:flex;justify-content:space-between;font-size:.86rem;padding:.35rem 0;color:#555}
+.totals-row.total{font-weight:700;font-size:.98rem;color:var(--black);border-top:1.5px solid #ccc;margin-top:.5rem;padding-top:.7rem}
+.totals-row .discount-val{color:#16a34a}
+.parcelas-info{margin-top:.75rem;font-size:.73rem;color:#555;background:#fff;border-radius:8px;padding:.55rem .75rem}
 
-    /* ── TICKER ── */
-    .ticker-wrap {
-      background: var(--black);
-      color: var(--white);
-      padding: 0.75rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .ticker-inner {
-      display: inline-flex;
-      animation: ticker 20s linear infinite;
-    }
-    .ticker-inner span {
-      margin: 0 2rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-    .ticker-inner span::after { content: ' ✦'; color: var(--gold); }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* FORM */
+.form-box{display:flex;flex-direction:column;gap:1rem}
+.form-section-title{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.06em;margin-bottom:.2rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.form-field{display:flex;flex-direction:column;gap:.3rem}
+.form-field label{font-size:.73rem;font-weight:600;letter-spacing:.05em;color:#555}
+.form-field input,.form-field select{border:1.5px solid #ddd;border-radius:8px;padding:.6rem .85rem;font-size:.86rem;font-family:inherit;transition:border-color .2s;width:100%}
+.form-field input:focus,.form-field select:focus{outline:none;border-color:var(--black)}
 
-    /* ── CATEGORIAS ── */
-    #categorias { padding: 5rem 2rem; }
-    .section-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 0.5rem;
-    }
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      letter-spacing: 0.04em;
-      margin-bottom: 2.5rem;
-    }
-    .cats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-    .cat-card {
-      background: var(--gray);
-      border-radius: var(--radius);
-      padding: 2rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: var(--black);
-      transition: all 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .cat-card:hover { background: var(--black); color: var(--white); transform: translateY(-2px); }
-    .cat-card .icon { font-size: 2rem; }
-    .cat-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.06em; }
-    .cat-card small { font-size: 0.75rem; opacity: 0.6; }
-    .cat-arrow { position: absolute; top: 1.2rem; right: 1.2rem; font-size: 1rem; opacity: 0.4; }
+/* PAGAMENTO */
+.pay-tabs{display:flex;gap:.5rem;margin-bottom:1rem}
+.pay-tab{flex:1;padding:.55rem;border:1.5px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-size:.78rem;font-weight:600;text-align:center;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.pay-tab.active{border-color:var(--black);background:var(--black);color:#fff}
+.pay-panel{display:none}
+.pay-panel.active{display:block}
+.pix-info{background:#f0fdf4;border-radius:8px;padding:.9rem;font-size:.8rem;line-height:1.8}
+.pix-info p{color:#166534;font-weight:600;margin-bottom:.4rem}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.card-full{grid-column:1/-1}
+.parcel-options{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:.5rem}
+.parcel-opt{flex:1;min-width:76px;border:1.5px solid #ddd;border-radius:8px;padding:.45rem;cursor:pointer;text-align:center;font-size:.76rem;transition:all .2s}
+.parcel-opt:hover,.parcel-opt.active{border-color:var(--black);background:var(--black);color:#fff}
+.parcel-opt strong{display:block;font-size:.82rem}
+.boleto-info{background:#fefce8;border-radius:8px;padding:.9rem;font-size:.8rem;line-height:1.8;color:#713f12}
+.ssl-badges{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.7rem}
+.ssl-badge{background:#f0fdf4;color:#166534;border-radius:2rem;padding:.28rem .7rem;font-size:.7rem;font-weight:600}
+.btn-finalizar{width:100%;background:var(--black);color:#fff;border:none;border-radius:2rem;padding:.95rem;font-size:.95rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:background .2s,transform .1s}
+.btn-finalizar:hover{background:#333}
+.btn-finalizar:active{transform:scale(.98)}
+.form-legal{text-align:center;font-size:.7rem;color:var(--mid);margin-top:.5rem}
+.form-legal a{color:var(--black)}
 
-    /* ── PRODUTOS ── */
-    #produtos { padding: 5rem 2rem; background: var(--gray); }
-    .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .tab {
-      padding: 0.4rem 1.2rem;
-      border-radius: 2rem;
-      border: 1.5px solid #ddd;
-      background: #fff;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: var(--black);
-    }
-    .tab.active, .tab:hover { background: var(--black); color: var(--white); border-color: var(--black); }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.5rem;
-    }
-    .prod-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .prod-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
-    .prod-img {
-      height: 280px;
-      background: linear-gradient(135deg, #1a1a1a, #444);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      position: relative;
-    }
-    .prod-img .prod-badge {
-      position: absolute;
-      top: 0.75rem; left: 0.75rem;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      border-radius: 1rem;
-    }
-    .prod-info { padding: 1rem; }
-    .prod-info small { font-size: 0.7rem; color: var(--mid); letter-spacing: 0.08em; text-transform: uppercase; }
-    .prod-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; margin: 0.2rem 0; }
-    .prod-price { display: flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0 0.75rem; }
-    .prod-price strong { font-size: 1rem; font-weight: 700; }
-    .prod-price s { font-size: 0.82rem; color: var(--mid); }
-    .btn-prod {
-      display: block;
-      text-align: center;
-      background: var(--black);
-      color: var(--white);
-      padding: 0.6rem;
-      border-radius: 2rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .btn-prod:hover { background: #333; }
+/* NEWSLETTER */
+.newsletter{background:var(--black);color:var(--white);padding:3.5rem 1.5rem;text-align:center}
+.newsletter h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,6vw,3rem);letter-spacing:.04em;margin-bottom:.5rem}
+.newsletter p{color:rgba(255,255,255,.55);font-size:.88rem;margin-bottom:1.25rem}
+.newsletter-form{display:flex;gap:.5rem;max-width:380px;margin:0 auto;flex-wrap:wrap}
+.newsletter-form input{flex:1;min-width:180px;border:none;background:rgba(255,255,255,.1);color:#fff;border-radius:2rem;padding:.7rem 1.1rem;font-size:.86rem;font-family:inherit}
+.newsletter-form input::placeholder{color:rgba(255,255,255,.35)}
+.newsletter-form button{background:var(--gold);color:#000;border:none;border-radius:2rem;padding:.7rem 1.4rem;font-weight:700;font-size:.84rem;cursor:pointer}
+.nl-perks{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1rem}
+.nl-perks span{font-size:.73rem;color:rgba(255,255,255,.45)}
 
-    /* ── SOBRE ── */
-    #sobre {
-      padding: 6rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4rem;
-      flex-wrap: wrap;
-    }
-    .sobre-text { max-width: 480px; }
-    .sobre-text h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-    .sobre-text h2 em { color: var(--accent); font-style: normal; }
-    .sobre-text p { color: #555; line-height: 1.8; margin-bottom: 1.5rem; }
-    .sobre-img {
-      width: 340px; height: 400px;
-      background: var(--black);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      flex-shrink: 0;
-    }
+/* FOOTER */
+footer{background:#050505;color:rgba(255,255,255,.55);padding:2.5rem 1.5rem 1.5rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+.footer-brand .logo{color:var(--white);font-size:1.35rem;display:block;margin-bottom:.65rem}
+.footer-brand p{font-size:.8rem;line-height:1.7}
+.footer-socials{display:flex;gap:.65rem;margin-top:.9rem}
+.footer-socials a{width:34px;height:34px;background:rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;text-decoration:none;transition:background .2s}
+.footer-socials a:hover{background:rgba(255,255,255,.18)}
+.footer-col h4{color:var(--white);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.9rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.footer-col ul a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.8rem;transition:color .2s}
+.footer-col ul a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.65rem;font-size:.72rem}
+.footer-pays{display:flex;gap:.4rem;flex-wrap:wrap}
+.footer-pay{background:rgba(255,255,255,.06);border-radius:4px;padding:.18rem .45rem;font-size:.68rem;color:rgba(255,255,255,.5)}
 
-    /* ── COMO FUNCIONA ── */
-    .how {
-      background: var(--black);
-      color: var(--white);
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-    .how .section-label { color: rgba(255,255,255,0.4); }
-    .how .section-title { color: var(--white); }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-top: 2.5rem;
-    }
-    .step { padding: 1.5rem; }
-    .step-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
-      color: rgba(255,255,255,0.12);
-      line-height: 1;
-    }
-    .step-icon { font-size: 2rem; margin: 0.5rem 0; }
-    .step h4 { font-weight: 700; margin-bottom: 0.5rem; }
-    .step p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+/* BACK TO TOP */
+#back-top{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--black);color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;z-index:900;opacity:0;pointer-events:none;transition:opacity .3s,transform .2s;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+#back-top.visible{opacity:1;pointer-events:all}
+#back-top:hover{transform:translateY(-3px)}
 
-    /* ── DEPOIMENTOS ── */
-    .reviews { padding: 5rem 2rem; background: var(--gray); }
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .review-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-    }
-    .stars { color: #f59e0b; font-size: 0.9rem; margin-bottom: 0.75rem; }
-    .review-card blockquote { font-size: 0.9rem; line-height: 1.7; color: #444; margin-bottom: 1rem; font-style: italic; }
-    .reviewer { display: flex; align-items: center; gap: 0.75rem; }
-    .reviewer-avatar {
-      width: 38px; height: 38px;
-      border-radius: 50%;
-      background: var(--black);
-      color: var(--white);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.85rem;
-    }
-    .reviewer-name strong { display: block; font-size: 0.85rem; }
-    .reviewer-name small { color: var(--mid); font-size: 0.75rem; }
+/* TOAST */
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#111;color:#fff;padding:.7rem 1.4rem;border-radius:2rem;font-size:.86rem;font-weight:600;z-index:9999;transition:transform .3s ease;box-shadow:0 4px 20px rgba(0,0,0,.3);white-space:nowrap}
+#toast.show{transform:translateX(-50%) translateY(0)}
 
-    /* ── CHECKOUT ── */
-    #checkout {
-      padding: 5rem 2rem;
-      background: var(--white);
-    }
-    .checkout-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      max-width: 960px;
-      margin: 2rem auto 0;
-    }
-    @media (max-width: 720px) { .checkout-grid { grid-template-columns: 1fr; } }
+/* REVEAL ANIMATION */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-    .cart-summary-box {
-      background: var(--gray);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-    }
-    .cart-summary-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.06em; margin-bottom: 1rem; }
-    #cart-items { min-height: 80px; }
-    .cart-empty {
-      text-align: center;
-      color: var(--mid);
-      padding: 2rem 0;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid #e5e5e5;
-      gap: 0.75rem;
-      font-size: 0.88rem;
-    }
-    .cart-item-name { flex: 1; }
-    .cart-item-name strong { display: block; margin-bottom: 0.15rem; }
-    .cart-item-name small { color: var(--mid); font-size: 0.75rem; }
-    .cart-qty {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .qty-btn {
-      width: 26px; height: 26px;
-      border: 1.5px solid #ccc;
-      background: #fff;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1rem;
-      line-height: 1;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.15s;
-    }
-    .qty-btn:hover { background: var(--black); color: #fff; border-color: var(--black); }
-    .cart-item-price { text-align: right; }
-    .cart-item-price strong { display: block; }
-    .remove-btn {
-      background: none; border: none; color: var(--accent);
-      font-size: 0.72rem; cursor: pointer; text-decoration: underline; margin-top: 0.2rem;
-    }
-
-    .coupon-row { display: flex; gap: 0.5rem; margin: 1rem 0; }
-    .coupon-row input {
-      flex: 1;
-      border: 1.5px solid #ddd;
-      border-radius: 2rem;
-      padding: 0.5rem 1rem;
-      font-size: 0.85rem;
-    }
-    .coupon-row button {
-      background: var(--black);
-      color: #fff;
-      border: none;
-      border-radius: 2rem;
-      padding: 0.5rem 1.2rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .totals { margin-top: 0.5rem; }
-    .totals-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.88rem;
-      padding: 0.4rem 0;
-      color: #555;
-    }
-    .totals-row.total {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--black);
-      border-top: 1.5px solid #ccc;
-      margin-top: 0.5rem;
-      padding-top: 0.75rem;
-    }
-    .totals-row .discount-val { color: #16a34a; }
-
-    .parcelas-info {
-      margin-top: 0.75rem;
-      font-size: 0.75rem;
-      color: #555;
-      background: #fff;
-      border-radius: 8px;
-      padding: 0.6rem 0.8rem;
-    }
-
-    /* ── FORMULÁRIO ── */
-    .form-box { display: flex; flex-direction: column; gap: 1rem; }
-    .form-section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.2rem;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.25rem;
-    }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    .form-grid.full { grid-template-columns: 1fr; }
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-    .form-field label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; color: #555; }
-    .form-field input, .form-field select {
-      border: 1.5px solid #ddd;
-      border-radius: 8px;
-      padding: 0.6rem 0.9rem;
-      font-size: 0.88rem;
-      font-family: inherit;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-    .form-field input:focus, .form-field select:focus {
-      outline: none;
-      border-color: var(--black);
-    }
-
-    /* ── PAGAMENTO ── */
-    .pay-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-    .pay-tab {
-      flex: 1;
-      padding: 0.6rem;
-      border: 1.5px solid #ddd;
-      border-radius: 8px;
-      background: #fff;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-align: center;
-      transition: all 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.2rem;
-    }
-    .pay-tab.active { border-color: var(--black); background: var(--black); color: #fff; }
-    .pay-panel { display: none; }
-    .pay-panel.active { display: block; }
-    .pix-info { background: #f0fdf4; border-radius: 8px; padding: 1rem; font-size: 0.82rem; line-height: 1.8; }
-    .pix-info p { color: #166534; font-weight: 600; margin-bottom: 0.5rem; }
-    .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    .card-full { grid-column: 1 / -1; }
-    .parcel-options { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
-    .parcel-opt {
-      flex: 1;
-      min-width: 80px;
-      border: 1.5px solid #ddd;
-      border-radius: 8px;
-      padding: 0.5rem;
-      cursor: pointer;
-      text-align: center;
-      font-size: 0.78rem;
-      transition: all 0.2s;
-    }
-    .parcel-opt:hover, .parcel-opt.active { border-color: var(--black); background: var(--black); color: #fff; }
-    .parcel-opt strong { display: block; font-size: 0.85rem; }
-    .boleto-info { background: #fefce8; border-radius: 8px; padding: 1rem; font-size: 0.82rem; line-height: 1.8; color: #713f12; }
-
-    .ssl-badges {
-      display: flex;
-      gap: 0.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 0.75rem;
-    }
-    .ssl-badge {
-      background: #f0fdf4;
-      color: #166534;
-      border-radius: 2rem;
-      padding: 0.3rem 0.75rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-    }
-    .btn-finalizar {
-      width: 100%;
-      background: var(--black);
-      color: #fff;
-      border: none;
-      border-radius: 2rem;
-      padding: 1rem;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-finalizar:hover { background: #333; }
-    .form-legal { text-align: center; font-size: 0.72rem; color: var(--mid); margin-top: 0.5rem; }
-    .form-legal a { color: var(--black); }
-
-    /* ── NEWSLETTER ── */
-    .newsletter {
-      background: var(--black);
-      color: var(--white);
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .newsletter h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      letter-spacing: 0.04em;
-      margin-bottom: 0.5rem;
-    }
-    .newsletter p { color: rgba(255,255,255,0.55); font-size: 0.9rem; margin-bottom: 1.5rem; }
-    .newsletter-form { display: flex; gap: 0.5rem; max-width: 400px; margin: 0 auto; }
-    .newsletter-form input {
-      flex: 1;
-      border: none;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border-radius: 2rem;
-      padding: 0.75rem 1.2rem;
-      font-size: 0.88rem;
-      font-family: inherit;
-    }
-    .newsletter-form input::placeholder { color: rgba(255,255,255,0.35); }
-    .newsletter-form button {
-      background: var(--gold);
-      color: #000;
-      border: none;
-      border-radius: 2rem;
-      padding: 0.75rem 1.5rem;
-      font-weight: 700;
-      font-size: 0.85rem;
-      cursor: pointer;
-    }
-    .nl-perks { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.2rem; }
-    .nl-perks span { font-size: 0.75rem; color: rgba(255,255,255,0.45); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #050505;
-      color: rgba(255,255,255,0.55);
-      padding: 3rem 2rem 1.5rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    @media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-    .footer-brand .logo { color: var(--white); font-size: 1.4rem; display: block; margin-bottom: 0.75rem; }
-    .footer-brand p { font-size: 0.82rem; line-height: 1.7; }
-    .footer-socials { display: flex; gap: 0.75rem; margin-top: 1rem; }
-    .footer-socials a {
-      width: 34px; height: 34px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .footer-socials a:hover { background: rgba(255,255,255,0.18); }
-    .footer-col h4 { color: var(--white); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-col ul a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-    .footer-col ul a:hover { color: var(--white); }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      font-size: 0.75rem;
-    }
-    .footer-pays { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .footer-pay {
-      background: rgba(255,255,255,0.06);
-      border-radius: 4px;
-      padding: 0.2rem 0.5rem;
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.5);
-    }
-
-    /* ── BACK TO TOP ── */
-    #back-top {
-      position: fixed;
-      bottom: 2rem; right: 2rem;
-      background: var(--black);
-      color: #fff;
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
-      cursor: pointer;
-      z-index: 900;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-      text-decoration: none;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    }
-    #back-top.visible { opacity: 1; pointer-events: all; }
-
-    /* ── TOAST ── */
-    #toast {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: #111;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 2rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      z-index: 9999;
-      transition: transform 0.3s ease;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      white-space: nowrap;
-    }
-    #toast.show { transform: translateX(-50%) translateY(0); }
-
-    @media (max-width: 768px) {
-      header { padding: 0 1rem; }
-      nav { display: none; }
-      .featured { flex-direction: column; }
-      .featured-img { width: 100%; }
-      #sobre { flex-direction: column; }
-      .sobre-img { width: 100%; }
-      .checkout-grid { grid-template-columns: 1fr; }
-      .form-grid { grid-template-columns: 1fr; }
-      .card-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{display:none}
+  .menu-toggle{display:block}
+  header{padding:0 1rem}
+  .featured{flex-direction:column;padding:2.5rem 1rem}
+  .featured-img{height:300px}
+  #sobre{flex-direction:column;padding:3rem 1rem}
+  .sobre-img{width:100%;height:260px;font-size:1.8rem}
+  .checkout-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .cats-grid{grid-template-columns:1fr 1fr}
+  .topbar{gap:.5rem;font-size:.65rem}
+}
+@media(max-width:420px){
+  .hero h1{font-size:2.5rem}
+  .hero-stats{gap:1.5rem}
+  .footer-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <span>🔒 Site 100% Seguro</span>
-  <span>🔐 Pagamento Criptografado SSL</span>
-  <span>🛡️ Dados Protegidos — LGPD</span>
+  <span>🔐 SSL Criptografado</span>
+  <span>🛡️ LGPD</span>
   <span>💳 Pix · Cartão · Boleto</span>
 </div>
 
-<!-- HEADER -->
 <header>
   <a href="#" class="logo">GODIN STYLE</a>
   <nav>
@@ -860,12 +297,21 @@
     <a href="#checkout">Comprar</a>
     <a href="#checkout" class="btn-entrar">Entrar</a>
   </nav>
+  <button class="menu-toggle" onclick="openMobileNav()" aria-label="Menu">☰</button>
   <button class="cart-btn" onclick="scrollToCheckout()">
     🛒 Carrinho <span class="badge" id="cart-count">0</span>
   </button>
 </header>
 
-<!-- HERO -->
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="#categorias" onclick="closeMobileNav()">Coleções</a>
+  <a href="#produtos" onclick="closeMobileNav()">Produtos</a>
+  <a href="#sobre" onclick="closeMobileNav()">Sobre</a>
+  <a href="#checkout" onclick="closeMobileNav()">Comprar</a>
+  <a href="#checkout" onclick="closeMobileNav()">Entrar</a>
+</div>
+
 <section class="hero" id="inicio">
   <div>
     <div class="hero-badge">✦ Nova Coleção 2025 — Disponível Agora</div>
@@ -883,8 +329,7 @@
   </div>
 </section>
 
-<!-- PRODUTO DESTAQUE -->
-<section class="featured">
+<section class="featured reveal">
   <div class="featured-img">
     <div class="shirt-art">👕</div>
     <div class="badge-off">-30% OFF</div>
@@ -901,7 +346,6 @@
   </div>
 </section>
 
-<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
     <span>Nova Coleção</span><span>Godin Style 2025</span><span>Streetwear Premium</span><span>Vista Sua Identidade</span><span>Entrega Rápida</span><span>Parcele Sem Juros</span>
@@ -909,226 +353,154 @@
   </div>
 </div>
 
-<!-- CATEGORIAS -->
 <section id="categorias">
   <p class="section-label">/ Coleções</p>
   <h2 class="section-title">EXPLORE POR CATEGORIA</h2>
   <div class="cats-grid">
-    <a href="#produtos" class="cat-card"><div class="icon">👕</div><h3>CAMISETAS</h3><small>68 produtos</small><span class="cat-arrow">→</span></a>
-    <a href="#produtos" class="cat-card"><div class="icon">🧥</div><h3>MOLETONS</h3><small>42 produtos</small><span class="cat-arrow">→</span></a>
-    <a href="#produtos" class="cat-card"><div class="icon">👖</div><h3>CALÇAS</h3><small>55 produtos</small><span class="cat-arrow">→</span></a>
-    <a href="#produtos" class="cat-card"><div class="icon">🧢</div><h3>ACESSÓRIOS</h3><small>30 produtos</small><span class="cat-arrow">→</span></a>
+    <a href="#produtos" class="cat-card reveal"><div class="icon">👕</div><h3>CAMISETAS</h3><small>68 produtos</small><span class="cat-arrow">→</span></a>
+    <a href="#produtos" class="cat-card reveal"><div class="icon">🧥</div><h3>MOLETONS</h3><small>42 produtos</small><span class="cat-arrow">→</span></a>
+    <a href="#produtos" class="cat-card reveal"><div class="icon">👖</div><h3>CALÇAS</h3><small>55 produtos</small><span class="cat-arrow">→</span></a>
+    <a href="#produtos" class="cat-card reveal"><div class="icon">🧢</div><h3>ACESSÓRIOS</h3><small>30 produtos</small><span class="cat-arrow">→</span></a>
   </div>
 </section>
 
-<!-- PRODUTOS -->
 <section id="produtos">
-  <p class="section-label">/ Catálogo</p>
-  <h2 class="section-title">MAIS VENDIDOS</h2>
-  <div class="filter-tabs">
-    <button class="tab active">Todos</button>
-    <button class="tab">Camisetas</button>
-    <button class="tab">Moletons</button>
-    <button class="tab">Calças</button>
-    <button class="tab">Acessórios</button>
-  </div>
-  <div class="products-grid">
-    <div class="prod-card">
-      <div class="prod-img"><div class="prod-badge">-30% OFF</div>👕</div>
-      <div class="prod-info">
-        <small>Camiseta · Edição Limitada</small>
-        <h4>URBAN FLOW TEE</h4>
-        <div class="prod-price"><strong>R$ 149,90</strong><s>R$ 219,90</s></div>
-        <a href="produto-godin-style.html" class="btn-prod">Ver Produto</a>
-      </div>
-    </div>
-    <div class="prod-card">
-      <div class="prod-img"><div class="prod-badge">-25% OFF</div>🧥</div>
-      <div class="prod-info">
-        <small>Moletom · Mais Vendido</small>
-        <h4>DARK WAVE HOODIE</h4>
-        <div class="prod-price"><strong>R$ 289,90</strong><s>R$ 389,90</s></div>
-        <a href="produto-godin-style.html" class="btn-prod">Ver Produto</a>
-      </div>
-    </div>
-    <div class="prod-card">
-      <div class="prod-img">👖</div>
-      <div class="prod-info">
-        <small>Calça · Streetwear</small>
-        <h4>STREET CARGO PANTS</h4>
-        <div class="prod-price"><strong>R$ 219,90</strong><s>R$ 299,90</s></div>
-        <a href="produto-godin-style.html" class="btn-prod">Ver Produto</a>
-      </div>
-    </div>
-    <div class="prod-card">
-      <div class="prod-img"><div class="prod-badge">-20% OFF</div>🧢</div>
-      <div class="prod-info">
-        <small>Acessório · Snapback</small>
-        <h4>SHADOW CAP SNAPBACK</h4>
-        <div class="prod-price"><strong>R$ 99,90</strong><s>R$ 129,90</s></div>
-        <a href="produto-godin-style.html" class="btn-prod">Ver Produto</a>
-      </div>
+  <div class="inner-pad">
+    <p class="section-label">/ Catálogo</p>
+    <h2 class="section-title">MAIS VENDIDOS</h2>
+    <div class="filter-tabs">
+      <button class="tab active">Todos</button>
+      <button class="tab">Camisetas</button>
+      <button class="tab">Moletons</button>
+      <button class="tab">Calças</button>
+      <button class="tab">Acessórios</button>
     </div>
   </div>
+  <div class="carousel-wrap">
+    <button class="car-btn car-prev" onclick="carScroll(-1)">‹</button>
+    <div class="carousel-track" id="carousel-track">
+      <div class="prod-card">
+        <div class="prod-img"><div class="prod-badge">-30% OFF</div>👕</div>
+        <div class="prod-info"><small>Camiseta · Edição Limitada</small><h4>URBAN FLOW TEE</h4><div class="prod-price"><strong>R$ 149,90</strong><s>R$ 219,90</s></div><a href="produto-godin-style.html" class="btn-prod">Ver Produto</a></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img"><div class="prod-badge">-25% OFF</div>🧥</div>
+        <div class="prod-info"><small>Moletom · Mais Vendido</small><h4>DARK WAVE HOODIE</h4><div class="prod-price"><strong>R$ 289,90</strong><s>R$ 389,90</s></div><a href="produto-godin-style.html" class="btn-prod">Ver Produto</a></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">👖</div>
+        <div class="prod-info"><small>Calça · Streetwear</small><h4>STREET CARGO PANTS</h4><div class="prod-price"><strong>R$ 219,90</strong><s>R$ 299,90</s></div><a href="produto-godin-style.html" class="btn-prod">Ver Produto</a></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img"><div class="prod-badge">-20% OFF</div>🧢</div>
+        <div class="prod-info"><small>Acessório · Snapback</small><h4>SHADOW CAP SNAPBACK</h4><div class="prod-price"><strong>R$ 99,90</strong><s>R$ 129,90</s></div><a href="produto-godin-style.html" class="btn-prod">Ver Produto</a></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img"><div class="prod-badge">-15% OFF</div>👟</div>
+        <div class="prod-info"><small>Tênis · Streetwear</small><h4>URBAN SOLE LOW</h4><div class="prod-price"><strong>R$ 349,90</strong><s>R$ 419,90</s></div><a href="produto-godin-style.html" class="btn-prod">Ver Produto</a></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">🧣</div>
+        <div class="prod-info"><small>Acessório · Inverno</small><h4>SHADOW SCARF</h4><div class="prod-price"><strong>R$ 79,90</strong><s>R$ 99,90</s></div><a href="produto-godin-style.html" class="btn-prod">Ver Produto</a></div>
+      </div>
+    </div>
+    <button class="car-btn car-next" onclick="carScroll(1)">›</button>
+  </div>
+  <div class="carousel-dots" id="carousel-dots"></div>
 </section>
 
-<!-- SOBRE -->
 <section id="sobre">
-  <div class="sobre-text">
+  <div class="sobre-text reveal">
     <p class="section-label">/ Sobre a Godin Style</p>
     <h2>NASCIDOS PARA <em>OUSAR</em></h2>
     <p>A Godin Style nasceu da rua, da música, da arte urbana. Cada peça é pensada para quem vive intensamente — jovens que não têm medo de ser quem são. Qualidade premium, design exclusivo, preço justo.</p>
     <a href="#produtos" class="btn-ver">Ver Coleção</a>
   </div>
-  <div class="sobre-img">✦ GODIN STYLE</div>
+  <div class="sobre-img reveal">✦ GODIN STYLE</div>
 </section>
 
-<!-- COMO FUNCIONA -->
 <section class="how">
   <p class="section-label">/ Como Funciona</p>
   <h2 class="section-title">SIMPLES ASSIM</h2>
   <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-icon">🛍️</div>
-      <h4>Escolha suas peças</h4>
-      <p>Navegue pelo catálogo, filtre por categoria, tamanho e cor. Adicione ao carrinho com um clique.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-icon">🔒</div>
-      <h4>Pagamento seguro</h4>
-      <p>Pix com 10% OFF, cartão em até 12x sem juros ou boleto. Dados criptografados com SSL 256-bit.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-icon">📦</div>
-      <h4>Embalagem especial</h4>
-      <p>Cada peça é embalada com cuidado em caixa premium Godin Style. Envio em até 24h úteis.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-icon">✨</div>
-      <h4>Vista e arrase</h4>
-      <p>Receba em casa e vista seu estilo. 30 dias para trocas gratuitas. Sua satisfação é garantida.</p>
-    </div>
+    <div class="step reveal"><div class="step-num">01</div><div class="step-icon">🛍️</div><h4>Escolha suas peças</h4><p>Navegue pelo catálogo, filtre por categoria, tamanho e cor.</p></div>
+    <div class="step reveal"><div class="step-num">02</div><div class="step-icon">🔒</div><h4>Pagamento seguro</h4><p>Pix com 10% OFF, cartão em até 12x sem juros ou boleto.</p></div>
+    <div class="step reveal"><div class="step-num">03</div><div class="step-icon">📦</div><h4>Embalagem especial</h4><p>Caixa premium Godin Style. Envio em até 24h úteis.</p></div>
+    <div class="step reveal"><div class="step-num">04</div><div class="step-icon">✨</div><h4>Vista e arrase</h4><p>30 dias para trocas gratuitas. Sua satisfação é garantida.</p></div>
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
 <section class="reviews">
   <p class="section-label">/ Clientes</p>
   <h2 class="section-title">O QUE FALAM DE NÓS</h2>
   <div class="reviews-grid">
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <blockquote>"Simplesmente perfeito! A qualidade das peças é incrível, muito melhor do que eu esperava. Já indiquei pra todos os meus amigos."</blockquote>
-      <div class="reviewer">
-        <div class="reviewer-avatar">ML</div>
-        <div class="reviewer-name"><strong>Mateus Lima</strong><small>@mateusdrip · São Paulo</small></div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <blockquote>"Comprei um moletom e uma calça. Chegaram rápido e embalados com muito cuidado. A qualidade é premium mesmo! Voltarei com certeza."</blockquote>
-      <div class="reviewer">
-        <div class="reviewer-avatar">JS</div>
-        <div class="reviewer-name"><strong>Julia Santos</strong><small>@julinha.s · Rio de Janeiro</small></div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <blockquote>"Amo demais! A Godin Style tem um estilo único que nenhuma outra marca tem. Todo mundo pergunta onde comprei quando uso."</blockquote>
-      <div class="reviewer">
-        <div class="reviewer-avatar">PR</div>
-        <div class="reviewer-name"><strong>Pedro Rocha</strong><small>@pedrostyle · Curitiba</small></div>
-      </div>
-    </div>
+    <div class="review-card reveal"><div class="stars">★★★★★</div><blockquote>"Simplesmente perfeito! A qualidade das peças é incrível, muito melhor do que eu esperava. Já indiquei pra todos os meus amigos."</blockquote><div class="reviewer"><div class="reviewer-avatar">ML</div><div class="reviewer-name"><strong>Mateus Lima</strong><small>@mateusdrip · São Paulo</small></div></div></div>
+    <div class="review-card reveal"><div class="stars">★★★★★</div><blockquote>"Comprei um moletom e uma calça. Chegaram rápido e embalados com muito cuidado. A qualidade é premium mesmo!"</blockquote><div class="reviewer"><div class="reviewer-avatar">JS</div><div class="reviewer-name"><strong>Julia Santos</strong><small>@julinha.s · Rio de Janeiro</small></div></div></div>
+    <div class="review-card reveal"><div class="stars">★★★★★</div><blockquote>"Amo demais! A Godin Style tem um estilo único. Todo mundo pergunta onde comprei quando uso."</blockquote><div class="reviewer"><div class="reviewer-avatar">PR</div><div class="reviewer-name"><strong>Pedro Rocha</strong><small>@pedrostyle · Curitiba</small></div></div></div>
   </div>
 </section>
 
-<!-- CHECKOUT -->
 <section id="checkout">
   <p class="section-label">/ Finalizar Compra</p>
   <h2 class="section-title">SEU CARRINHO</h2>
-  <p style="color:#555;font-size:0.9rem;margin-top:-1rem;margin-bottom:0;">Checkout rápido, seguro e sem surpresas. Pagamento protegido por SSL 256-bit.</p>
-
+  <p style="color:#555;font-size:.9rem;margin-top:-.8rem;margin-bottom:0">Checkout rápido e seguro. SSL 256-bit.</p>
   <div class="checkout-grid">
-    <!-- RESUMO DO PEDIDO -->
     <div>
       <div class="cart-summary-box">
         <h3>RESUMO DO PEDIDO</h3>
-        <div id="cart-items">
-          <div class="cart-empty">🛒 Seu carrinho está vazio.<br><small>Adicione produtos acima!</small></div>
-        </div>
+        <div id="cart-items"><div class="cart-empty">🛒 Seu carrinho está vazio.<br><small>Adicione produtos acima!</small></div></div>
         <div class="coupon-row">
-          <input type="text" id="coupon-input" placeholder="Código de cupom" />
+          <input type="text" id="coupon-input" placeholder="Código de cupom"/>
           <button onclick="applyCoupon()">Aplicar</button>
         </div>
         <div class="totals">
           <div class="totals-row"><span>Subtotal</span><span id="subtotal">R$ 0,00</span></div>
           <div class="totals-row"><span>Desconto (10%)</span><span class="discount-val" id="discount-val">-R$ 0,00</span></div>
-          <div class="totals-row"><span>Frete</span><span style="color:#16a34a;">Grátis</span></div>
+          <div class="totals-row"><span>Frete</span><span style="color:#16a34a">Grátis</span></div>
           <div class="totals-row total"><span>TOTAL</span><span id="total-val">R$ 0,00</span></div>
         </div>
-        <div class="parcelas-info">
-          ✓ Parcelamento em até 12x sem juros · ✓ Frete grátis · ✓ 30 dias para troca
-        </div>
+        <div class="parcelas-info">✓ 12x sem juros · ✓ Frete grátis · ✓ 30 dias para troca</div>
       </div>
     </div>
-
-    <!-- FORMULÁRIO -->
     <div class="form-box">
       <div class="form-section-title">DADOS PESSOAIS</div>
       <div class="form-grid">
-        <div class="form-field"><label>Nome Completo</label><input type="text" placeholder="Seu nome" /></div>
-        <div class="form-field"><label>CPF</label><input type="text" placeholder="000.000.000-00" id="cpf" /></div>
-        <div class="form-field"><label>E-mail</label><input type="email" placeholder="email@exemplo.com" /></div>
-        <div class="form-field"><label>Celular</label><input type="text" placeholder="(11) 99999-9999" /></div>
-        <div class="form-field"><label>CEP</label><input type="text" placeholder="00000-000" id="cep" /></div>
-        <div class="form-field"><label>Número</label><input type="text" placeholder="123" /></div>
-        <div class="form-field" style="grid-column:1/-1"><label>Endereço</label><input type="text" placeholder="Rua, Avenida..." id="logradouro" /></div>
-        <div class="form-field"><label>Cidade</label><input type="text" id="cidade" placeholder="Cidade" /></div>
+        <div class="form-field"><label>Nome Completo</label><input type="text" placeholder="Seu nome"/></div>
+        <div class="form-field"><label>CPF</label><input type="text" placeholder="000.000.000-00" id="cpf"/></div>
+        <div class="form-field"><label>E-mail</label><input type="email" placeholder="email@exemplo.com"/></div>
+        <div class="form-field"><label>Celular</label><input type="text" placeholder="(11) 99999-9999"/></div>
+        <div class="form-field"><label>CEP</label><input type="text" placeholder="00000-000" id="cep"/></div>
+        <div class="form-field"><label>Número</label><input type="text" placeholder="123"/></div>
+        <div class="form-field" style="grid-column:1/-1"><label>Endereço</label><input type="text" placeholder="Rua, Avenida..." id="logradouro"/></div>
+        <div class="form-field"><label>Cidade</label><input type="text" id="cidade" placeholder="Cidade"/></div>
         <div class="form-field"><label>Estado</label>
           <select id="estado">
             <option value="">Selecione</option>
-            <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
-            <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
-            <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
-            <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
-            <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
-            <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
-            <option>SP</option><option>SE</option><option>TO</option>
+            <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
           </select>
         </div>
       </div>
-
-      <div class="form-section-title" style="margin-top:0.5rem;">FORMA DE PAGAMENTO</div>
+      <div class="form-section-title" style="margin-top:.5rem">FORMA DE PAGAMENTO</div>
       <div class="pay-tabs">
         <button class="pay-tab active" onclick="selectPay('pix',this)">⚡<span>PIX</span></button>
         <button class="pay-tab" onclick="selectPay('card',this)">💳<span>Cartão</span></button>
         <button class="pay-tab" onclick="selectPay('boleto',this)">🧾<span>Boleto</span></button>
       </div>
-
       <div id="pay-pix" class="pay-panel active">
         <div class="pix-info">
-          <p>⚡ Pagar com PIX — 10% de Desconto</p>
-          ✓ Aprovação imediata — seu pedido é separado na hora<br>
-          ✓ QR Code gerado após confirmação do pedido<br>
-          ✓ Disponível 24h, 7 dias por semana<br>
-          ✓ Pix é a forma mais rápida e segura!
+          <p>⚡ PIX — 10% de Desconto</p>
+          ✓ Aprovação imediata<br>✓ QR Code gerado após confirmação<br>✓ Disponível 24h, 7 dias<br>✓ Forma mais rápida e segura!
         </div>
       </div>
-
       <div id="pay-card" class="pay-panel">
         <div class="card-grid">
-          <div class="form-field card-full"><label>Número do Cartão</label><input type="text" placeholder="0000 0000 0000 0000" /></div>
-          <div class="form-field card-full"><label>Nome no Cartão</label><input type="text" placeholder="Como no cartão" /></div>
-          <div class="form-field"><label>Validade</label><input type="text" placeholder="MM/AA" /></div>
-          <div class="form-field"><label>CVV</label><input type="text" placeholder="000" /></div>
+          <div class="form-field card-full"><label>Número do Cartão</label><input type="text" placeholder="0000 0000 0000 0000"/></div>
+          <div class="form-field card-full"><label>Nome no Cartão</label><input type="text" placeholder="Como no cartão"/></div>
+          <div class="form-field"><label>Validade</label><input type="text" placeholder="MM/AA"/></div>
+          <div class="form-field"><label>CVV</label><input type="text" placeholder="000"/></div>
         </div>
-        <div style="margin-top:0.75rem;">
-          <label style="font-size:0.75rem;font-weight:600;color:#555;display:block;margin-bottom:0.4rem;">Parcelamento</label>
+        <div style="margin-top:.75rem">
+          <label style="font-size:.73rem;font-weight:600;color:#555;display:block;margin-bottom:.4rem">Parcelamento</label>
           <div class="parcel-options">
             <div class="parcel-opt active"><strong id="p1x">R$ —</strong>1x sem juros</div>
             <div class="parcel-opt"><strong id="p6x">R$ —</strong>6x sem juros</div>
@@ -1136,16 +508,9 @@
           </div>
         </div>
       </div>
-
       <div id="pay-boleto" class="pay-panel">
-        <div class="boleto-info">
-          ✓ Vencimento em 3 dias úteis<br>
-          ✓ Compensação em até 2 dias úteis após o pagamento<br>
-          ✓ Pague em qualquer banco, lotérica ou aplicativo<br>
-          ⚠️ Pedido confirmado somente após compensação
-        </div>
+        <div class="boleto-info">✓ Vencimento em 3 dias úteis<br>✓ Compensação em até 2 dias úteis<br>✓ Pague em qualquer banco ou app<br>⚠️ Confirmado após compensação</div>
       </div>
-
       <div class="ssl-badges">
         <span class="ssl-badge">🔒 Ambiente Seguro</span>
         <span class="ssl-badge">🔐 SSL 256-bit</span>
@@ -1157,13 +522,12 @@
   </div>
 </section>
 
-<!-- NEWSLETTER -->
 <section class="newsletter">
-  <p class="section-label" style="color:rgba(255,255,255,0.35);">/ Fique por dentro</p>
+  <p class="section-label" style="color:rgba(255,255,255,.35)">/ Fique por dentro</p>
   <h2>SEJA O PRIMEIRO A SABER</h2>
   <p>Lançamentos exclusivos, promoções relâmpago e conteúdo para quem tem estilo.</p>
   <div class="newsletter-form">
-    <input type="email" placeholder="seu@email.com" />
+    <input type="email" placeholder="seu@email.com"/>
     <button>Inscrever →</button>
   </div>
   <div class="nl-perks">
@@ -1173,7 +537,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -1183,45 +546,14 @@
         <a href="#">📷</a><a href="#">🎵</a><a href="#">▶️</a><a href="#">🐦</a>
       </div>
     </div>
-    <div class="footer-col">
-      <h4>Produtos</h4>
-      <ul>
-        <li><a href="#categorias">Camisetas</a></li>
-        <li><a href="#categorias">Moletons</a></li>
-        <li><a href="#categorias">Calças</a></li>
-        <li><a href="#categorias">Acessórios</a></li>
-        <li><a href="#produtos">Lançamentos</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Atendimento</h4>
-      <ul>
-        <li><a href="#">Central de Ajuda</a></li>
-        <li><a href="#">Trocas e Devoluções</a></li>
-        <li><a href="#">Rastrear Pedido</a></li>
-        <li><a href="#">Fale Conosco</a></li>
-        <li><a href="#">WhatsApp</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Empresa</h4>
-      <ul>
-        <li><a href="#sobre">Nossa História</a></li>
-        <li><a href="#">Seja um Revendedor</a></li>
-        <li><a href="#">Blog de Estilo</a></li>
-        <li><a href="#">Termos de Uso</a></li>
-        <li><a href="#">Privacidade (LGPD)</a></li>
-      </ul>
-    </div>
+    <div class="footer-col"><h4>Produtos</h4><ul><li><a href="#categorias">Camisetas</a></li><li><a href="#categorias">Moletons</a></li><li><a href="#categorias">Calças</a></li><li><a href="#categorias">Acessórios</a></li><li><a href="#produtos">Lançamentos</a></li></ul></div>
+    <div class="footer-col"><h4>Atendimento</h4><ul><li><a href="#">Central de Ajuda</a></li><li><a href="#">Trocas e Devoluções</a></li><li><a href="#">Rastrear Pedido</a></li><li><a href="#">Fale Conosco</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+    <div class="footer-col"><h4>Empresa</h4><ul><li><a href="#sobre">Nossa História</a></li><li><a href="#">Seja um Revendedor</a></li><li><a href="#">Blog de Estilo</a></li><li><a href="#">Termos de Uso</a></li><li><a href="#">Privacidade (LGPD)</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <span>© 2025 Godin Style™ · CNPJ 00.000.000/0001-00 · Todos os direitos reservados</span>
     <div class="footer-pays">
-      <span class="footer-pay">PIX</span>
-      <span class="footer-pay">VISA</span>
-      <span class="footer-pay">MASTER</span>
-      <span class="footer-pay">ELO</span>
-      <span class="footer-pay">BOLETO</span>
+      <span class="footer-pay">PIX</span><span class="footer-pay">VISA</span><span class="footer-pay">MASTER</span><span class="footer-pay">ELO</span><span class="footer-pay">BOLETO</span>
     </div>
   </div>
 </footer>
@@ -1230,178 +562,59 @@
 <div id="toast">✓ Produto adicionado!</div>
 
 <script>
-// ═══════════════════════════════════════════
-//  CARRINHO — localStorage
-// ═══════════════════════════════════════════
-const CART_KEY = 'godin_cart';
-
-function getCart() {
-  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
-  catch { return []; }
+const CART_KEY='godin_cart';
+function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY))||[];}catch{return[];}}
+function saveCart(c){localStorage.setItem(CART_KEY,JSON.stringify(c));}
+function fmtPrice(v){return'R$ '+v.toFixed(2).replace('.',',');}
+function updateBadge(){const c=getCart().reduce((s,i)=>s+i.qty,0);document.getElementById('cart-count').textContent=c;}
+function renderCart(){
+  const cart=getCart();const el=document.getElementById('cart-items');
+  if(!cart.length){el.innerHTML='<div class="cart-empty">🛒 Seu carrinho está vazio.<br><small>Adicione produtos acima!</small></div>';updateTotals(0);return;}
+  el.innerHTML=cart.map(i=>`<div class="cart-item"><div class="cart-item-name"><strong>${i.name}</strong><small>${i.size?'Tam: '+i.size:''}${i.color?' · Cor: '+i.color:''}</small></div><div class="cart-qty"><button class="qty-btn" onclick="changeQty('${i.id}',-1)">−</button><span>${i.qty}</span><button class="qty-btn" onclick="changeQty('${i.id}',1)">+</button></div><div class="cart-item-price"><strong>${fmtPrice(i.price*i.qty)}</strong><button class="remove-btn" onclick="removeItem('${i.id}')">remover</button></div></div>`).join('');
+  updateTotals(cart.reduce((s,i)=>s+i.price*i.qty,0));
 }
-function saveCart(c) { localStorage.setItem(CART_KEY, JSON.stringify(c)); }
-
-function fmtPrice(v) {
-  return 'R$ ' + v.toFixed(2).replace('.', ',');
+function updateTotals(sub){
+  const disc=sub*.1,tot=sub-disc;
+  document.getElementById('subtotal').textContent=fmtPrice(sub);
+  document.getElementById('discount-val').textContent='-'+fmtPrice(disc);
+  document.getElementById('total-val').textContent=fmtPrice(tot);
+  const p1=document.getElementById('p1x');
+  if(p1){p1.textContent=tot>0?fmtPrice(tot):'R$ —';document.getElementById('p6x').textContent=tot>0?fmtPrice(tot/6):'R$ —';document.getElementById('p12x').textContent=tot>0?fmtPrice(tot/12):'R$ —';}
 }
+function changeQty(id,d){const c=getCart();const i=c.find(x=>x.id===id);if(!i)return;i.qty=Math.max(0,i.qty+d);if(i.qty===0)c.splice(c.indexOf(i),1);saveCart(c);updateBadge();renderCart();}
+function removeItem(id){saveCart(getCart().filter(i=>i.id!==id));updateBadge();renderCart();}
+function scrollToCheckout(){document.getElementById('checkout').scrollIntoView({behavior:'smooth',block:'start'});}
+function selectPay(t,btn){document.querySelectorAll('.pay-tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.pay-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('pay-'+t).classList.add('active');}
+document.querySelectorAll('.parcel-opt').forEach(o=>{o.addEventListener('click',function(){document.querySelectorAll('.parcel-opt').forEach(x=>x.classList.remove('active'));this.classList.add('active');});});
+function applyCoupon(){const v=document.getElementById('coupon-input').value.trim().toUpperCase();showToast(v==='GODIN10'?'✓ Cupom aplicado! 10% OFF':'❌ Cupom inválido');}
+document.getElementById('cep').addEventListener('blur',function(){const cep=this.value.replace(/\D/g,'');if(cep.length!==8)return;fetch(`https://viacep.com.br/ws/${cep}/json/`).then(r=>r.json()).then(d=>{if(!d.erro){document.getElementById('logradouro').value=d.logradouro||'';document.getElementById('cidade').value=d.localidade||'';document.getElementById('estado').value=d.uf||'';}}).catch(()=>{});});
+document.getElementById('cpf').addEventListener('input',function(){let v=this.value.replace(/\D/g,'').slice(0,11);v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');this.value=v;});
+function finalizarPedido(){const c=getCart();if(!c.length){showToast('❌ Adicione produtos ao carrinho!');return;}showToast('✓ Pedido finalizado! Em breve entraremos em contato.');saveCart([]);updateBadge();renderCart();}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+window.addEventListener('scroll',()=>{document.getElementById('back-top').classList.toggle('visible',scrollY>400);});
+document.querySelectorAll('.filter-tabs .tab').forEach(tab=>{tab.addEventListener('click',function(){document.querySelectorAll('.filter-tabs .tab').forEach(t=>t.classList.remove('active'));this.classList.add('active');});});
+window.addEventListener('storage',e=>{if(e.key===CART_KEY){updateBadge();renderCart();}});
 
-// ─── Badge do header ───
-function updateBadge() {
-  const count = getCart().reduce((s, i) => s + i.qty, 0);
-  document.getElementById('cart-count').textContent = count;
-}
+/* mobile nav */
+function openMobileNav(){document.getElementById('mobile-nav').classList.add('open');document.body.style.overflow='hidden';}
+function closeMobileNav(){document.getElementById('mobile-nav').classList.remove('open');document.body.style.overflow='';}
 
-// ─── Renderiza itens na seção checkout ───
-function renderCart() {
-  const cart = getCart();
-  const container = document.getElementById('cart-items');
-  if (!cart.length) {
-    container.innerHTML = '<div class="cart-empty">🛒 Seu carrinho está vazio.<br><small>Adicione produtos acima!</small></div>';
-    updateTotals(0);
-    return;
-  }
-  container.innerHTML = cart.map(item => `
-    <div class="cart-item">
-      <div class="cart-item-name">
-        <strong>${item.name}</strong>
-        <small>${item.size ? 'Tam: ' + item.size : ''}${item.color ? ' · Cor: ' + item.color : ''}</small>
-      </div>
-      <div class="cart-qty">
-        <button class="qty-btn" onclick="changeQty('${item.id}',-1)">−</button>
-        <span>${item.qty}</span>
-        <button class="qty-btn" onclick="changeQty('${item.id}',1)">+</button>
-      </div>
-      <div class="cart-item-price">
-        <strong>${fmtPrice(item.price * item.qty)}</strong>
-        <button class="remove-btn" onclick="removeItem('${item.id}')">remover</button>
-      </div>
-    </div>
-  `).join('');
-  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  updateTotals(subtotal);
-}
+/* carrossel */
+const track=document.getElementById('carousel-track');
+const cards=track.querySelectorAll('.prod-card');
+const dotsEl=document.getElementById('carousel-dots');
+let currentDot=0;
+cards.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' active':'');d.onclick=()=>{const cardW=cards[0].offsetWidth+16;track.scrollTo({left:cardW*i,behavior:'smooth'});};dotsEl.appendChild(d);});
+function updateDots(){const cardW=cards[0].offsetWidth+16;const idx=Math.round(track.scrollLeft/cardW);const dots=dotsEl.querySelectorAll('.dot');dots.forEach((d,i)=>d.classList.toggle('active',i===idx));currentDot=idx;}
+track.addEventListener('scroll',updateDots,{passive:true});
+function carScroll(dir){const cardW=cards[0].offsetWidth+16;track.scrollBy({left:dir*cardW*2,behavior:'smooth'});}
 
-function updateTotals(subtotal) {
-  const discount = subtotal * 0.1;
-  const total = subtotal - discount;
-  document.getElementById('subtotal').textContent = fmtPrice(subtotal);
-  document.getElementById('discount-val').textContent = '-' + fmtPrice(discount);
-  document.getElementById('total-val').textContent = fmtPrice(total);
-  // Parcelamentos
-  if (document.getElementById('p1x')) {
-    document.getElementById('p1x').textContent = total > 0 ? fmtPrice(total) : 'R$ —';
-    document.getElementById('p6x').textContent = total > 0 ? fmtPrice(total/6) : 'R$ —';
-    document.getElementById('p12x').textContent = total > 0 ? fmtPrice(total/12) : 'R$ —';
-  }
-}
+/* reveal on scroll */
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.12});
+reveals.forEach(r=>obs.observe(r));
 
-function changeQty(id, delta) {
-  const cart = getCart();
-  const item = cart.find(i => i.id === id);
-  if (!item) return;
-  item.qty = Math.max(0, item.qty + delta);
-  if (item.qty === 0) cart.splice(cart.indexOf(item), 1);
-  saveCart(cart);
-  updateBadge();
-  renderCart();
-}
-
-function removeItem(id) {
-  saveCart(getCart().filter(i => i.id !== id));
-  updateBadge();
-  renderCart();
-}
-
-// ─── Scroll para checkout (carrinho / entrar) ───
-function scrollToCheckout() {
-  document.getElementById('checkout').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// ─── Pagamento tabs ───
-function selectPay(type, btn) {
-  document.querySelectorAll('.pay-tab').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('pay-' + type).classList.add('active');
-}
-
-// ─── Parcelamento ───
-document.querySelectorAll('.parcel-opt').forEach(opt => {
-  opt.addEventListener('click', function() {
-    document.querySelectorAll('.parcel-opt').forEach(o => o.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-
-// ─── Cupom ───
-function applyCoupon() {
-  const val = document.getElementById('coupon-input').value.trim().toUpperCase();
-  if (val === 'GODIN10') { showToast('✓ Cupom aplicado! 10% OFF'); }
-  else { showToast('❌ Cupom inválido'); }
-}
-
-// ─── CEP automático ───
-document.getElementById('cep').addEventListener('blur', function() {
-  const cep = this.value.replace(/\D/g, '');
-  if (cep.length !== 8) return;
-  fetch(`https://viacep.com.br/ws/${cep}/json/`)
-    .then(r => r.json())
-    .then(d => {
-      if (!d.erro) {
-        document.getElementById('logradouro').value = d.logradouro || '';
-        document.getElementById('cidade').value = d.localidade || '';
-        document.getElementById('estado').value = d.uf || '';
-      }
-    }).catch(() => {});
-});
-
-// ─── CPF máscara ───
-document.getElementById('cpf').addEventListener('input', function() {
-  let v = this.value.replace(/\D/g, '').slice(0,11);
-  v = v.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-  this.value = v;
-});
-
-// ─── Finalizar pedido ───
-function finalizarPedido() {
-  const cart = getCart();
-  if (!cart.length) { showToast('❌ Adicione produtos ao carrinho!'); return; }
-  showToast('✓ Pedido finalizado! Em breve entraremos em contato.');
-  saveCart([]);
-  updateBadge();
-  renderCart();
-}
-
-// ─── Toast ───
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
-
-// ─── Back to top ───
-window.addEventListener('scroll', () => {
-  const btn = document.getElementById('back-top');
-  btn.classList.toggle('visible', window.scrollY > 400);
-});
-
-// ─── Filter tabs ───
-document.querySelectorAll('.filter-tabs .tab').forEach(tab => {
-  tab.addEventListener('click', function() {
-    document.querySelectorAll('.filter-tabs .tab').forEach(t => t.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-
-// ─── Sincronizar com outras abas ───
-window.addEventListener('storage', e => {
-  if (e.key === CART_KEY) { updateBadge(); renderCart(); }
-});
-
-// ─── INIT ───
-updateBadge();
-renderCart();
+updateBadge();renderCart();
 </script>
 </body>
 </html>
