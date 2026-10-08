@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>URBAN FLOW TEE — Godin Style</title>
+<title>Conjunto Polo + Bermuda — Godin Style</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -215,6 +215,8 @@ footer p{line-height:1.7;margin-bottom:.5rem}
 }
 .wa-float{position:fixed;bottom:5rem;right:1.5rem;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;text-decoration:none;z-index:900;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:transform .2s}
 .wa-float:hover{transform:scale(1.08)}
+.main-slide img{width:100%;height:100%;object-fit:cover}
+.thumb img{width:100%;height:100%;object-fit:cover;border-radius:8px}
 </style>
 </head>
 <body>
@@ -241,8 +243,8 @@ footer p{line-height:1.7;margin-bottom:.5rem}
 
 <div class="breadcrumb">
   <a href="index.html">Início</a> ›
-  <a href="index.html#categorias">Camisetas</a> ›
-  <span>Urban Flow Tee</span>
+  <a href="index.html#categorias">Conjuntos</a> ›
+  <span>Conjunto Polo + Bermuda</span>
 </div>
 
 <div class="product-wrap">
@@ -250,68 +252,53 @@ footer p{line-height:1.7;margin-bottom:.5rem}
   <div class="gallery">
     <div class="main-img-wrap">
       <div class="main-img-inner" id="gal-inner">
-        <div class="main-slide">👕</div>
-        <div class="main-slide">🖤</div>
-        <div class="main-slide">✦</div>
-        <div class="main-slide">📐</div>
+        <div class="main-slide"><img src="conjunto-vermelho.jpg" alt="Conjunto Polo vermelha + bermuda branca"></div>
+        <div class="main-slide"><img src="conjunto-branco.jpg" alt="Conjunto Polo branca + bermuda vermelha"></div>
+        <div class="main-slide"><img src="conjunto-marinho-branco.jpg" alt="Conjunto Polo marinho + bermuda branca"></div>
+        <div class="main-slide"><img src="conjunto-marinho.jpg" alt="Conjunto Polo e bermuda marinho"></div>
       </div>
-      <div class="badge-off">-30% OFF</div>
       <div class="badge-new">✦ NOVO</div>
       <button class="gal-btn gal-prev" onclick="galScroll(-1)">‹</button>
       <button class="gal-btn gal-next" onclick="galScroll(1)">›</button>
     </div>
     <div class="gal-dots" id="gal-dots"></div>
     <div class="thumbs" id="thumbs">
-      <div class="thumb active" data-idx="0">👕</div>
-      <div class="thumb" data-idx="1">🖤</div>
-      <div class="thumb" data-idx="2">✦</div>
-      <div class="thumb" data-idx="3">📐</div>
+      <div class="thumb active" data-idx="0"><img src="conjunto-vermelho.jpg" alt=""></div>
+      <div class="thumb" data-idx="1"><img src="conjunto-branco.jpg" alt=""></div>
+      <div class="thumb" data-idx="2"><img src="conjunto-marinho-branco.jpg" alt=""></div>
+      <div class="thumb" data-idx="3"><img src="conjunto-marinho.jpg" alt=""></div>
     </div>
   </div>
 
   <!-- INFO -->
   <div class="prod-info">
     <div>
-      <p class="prod-label">✦ GODIN STYLE — COLEÇÃO VERÃO 2025</p>
-      <h1 class="prod-title">URBAN FLOW TEE</h1>
-      <p class="prod-subtitle">Camiseta Streetwear Premium · Edição Limitada</p>
-    </div>
-    <div class="prod-rating">
-      <span class="stars">★★★★★</span>
-      <strong>4.9</strong>
-      <a href="#reviews">(238 avaliações)</a>
-      <span style="color:#16a34a;font-size:.76rem;font-weight:600">✓ Compra verificada</span>
-    </div>
-    <div class="prod-price">
-      <strong>R$ 149,90</strong>
-      <s>R$ 219,90</s>
-      <span class="save">ECONOMIZE R$ 70,00</span>
+      <p class="prod-label">✦ GODIN STYLE — NOVIDADE</p>
+      <h1 class="prod-title">CONJUNTO POLO + BERMUDA</h1>
+      <p class="prod-subtitle">Gola polo e bermuda de tactel · Grade M, G e GG</p>
     </div>
     <hr class="divider"/>
 
     <!-- COR -->
     <div>
-      <p class="option-label">Cor — <span id="color-name">Preto</span></p>
+      <p class="option-label">Cor — <span id="color-name">Polo vermelha + bermuda branca</span></p>
       <div class="colors">
-        <div class="color-dot active" style="background:#111" title="Preto" data-color="Preto" onclick="selectColor(this)"></div>
-        <div class="color-dot" style="background:#f5f5f5;border:1.5px solid #ccc" title="Branco" data-color="Branco" onclick="selectColor(this)"></div>
-        <div class="color-dot" style="background:#4a5568" title="Cinza" data-color="Cinza" onclick="selectColor(this)"></div>
-        <div class="color-dot" style="background:#2d3748" title="Navy" data-color="Navy" onclick="selectColor(this)"></div>
+        <div class="color-dot active" style="background:linear-gradient(135deg,#c8102e 50%,#f5f5f5 50%);border:1.5px solid #ccc" title="Polo vermelha + bermuda branca" data-color="Polo vermelha + bermuda branca" data-slide="0" onclick="selectColor(this)"></div>
+        <div class="color-dot" style="background:linear-gradient(135deg,#f5f5f5 50%,#c8102e 50%);border:1.5px solid #ccc" title="Polo branca + bermuda vermelha" data-color="Polo branca + bermuda vermelha" data-slide="1" onclick="selectColor(this)"></div>
+        <div class="color-dot" style="background:linear-gradient(135deg,#0a1a3a 50%,#f5f5f5 50%);border:1.5px solid #ccc" title="Polo marinho + bermuda branca" data-color="Polo marinho + bermuda branca" data-slide="2" onclick="selectColor(this)"></div>
+        <div class="color-dot" style="background:#0a1a3a" title="Polo e bermuda marinho" data-color="Polo e bermuda marinho" data-slide="3" onclick="selectColor(this)"></div>
       </div>
+    </div>
     </div>
 
     <!-- TAMANHO -->
     <div>
       <p class="option-label">Tamanho — <span id="size-name">Selecione</span></p>
       <div class="sizes">
-        <button class="size-btn" data-size="PP" onclick="selectSize(this)">PP</button>
-        <button class="size-btn" data-size="P" onclick="selectSize(this)">P</button>
         <button class="size-btn" data-size="M" onclick="selectSize(this)">M</button>
         <button class="size-btn" data-size="G" onclick="selectSize(this)">G</button>
         <button class="size-btn" data-size="GG" onclick="selectSize(this)">GG</button>
-        <button class="size-btn" data-size="XGG" onclick="selectSize(this)">XGG</button>
       </div>
-      <span class="size-guide" onclick="openModal()">📏 Guia de medidas</span>
     </div>
 
     <!-- QTY + BOTÕES -->
@@ -328,6 +315,7 @@ footer p{line-height:1.7;margin-bottom:.5rem}
     <div class="perks">
       <div class="perk">🚚 Frete grátis acima de R$ 199</div>
       <div class="perk">🔄 30 dias para troca grátis</div>
+      <div class="perk">📦 Atacado a partir de 6 peças, podendo misturar qualquer produto da loja</div>
     </div>
 
     <!-- FRETE -->
@@ -344,18 +332,18 @@ footer p{line-height:1.7;margin-bottom:.5rem}
     <div class="accordion">
       <div class="acc-item">
         <button class="acc-btn" onclick="toggleAcc(this)">📄 Descrição do Produto <span>⌄</span></button>
-        <div class="acc-body">A <strong>Urban Flow Tee</strong> é a peça definitiva para quem vive o streetwear com atitude. Desenvolvida com malha premium de alta gramatura, oferece conforto todo o dia com um caimento perfeito.<br><br>Estampa exclusiva em serigrafia texturizada, resistente a lavagens repetidas.</div>
+        <div class="acc-body">Conjunto de polo e bermuda para quem quer um visual alinhado sem esforço. A polo tem gola e detalhes coloridos nas mangas, e a bermuda é de tactel, com cós elástico, cordão e faixa lateral combinando. Vem em 4 combinações de cor, na grade M, G e GG. Atacado a partir de 6 peças, podendo misturar qualquer produto da loja.</div>
       </div>
       <div class="acc-item">
-        <button class="acc-btn" onclick="toggleAcc(this)">🧵 Composição e Cuidados <span>⌄</span></button>
+        <button class="acc-btn" onclick="toggleAcc(this)">🧵 Detalhes <span>⌄</span></button>
         <div class="acc-body">
           <table>
-            <tr><th>Material</th><td>100% Algodão Penteado</td></tr>
-            <tr><th>Gramatura</th><td>240 g/m²</td></tr>
-            <tr><th>Lavagem</th><td>Máquina até 30°C</td></tr>
-            <tr><th>Secagem</th><td>À sombra</td></tr>
+            <tr><th>Peças</th><td>Polo + bermuda</td></tr>
+            <tr><th>Polo</th><td>Gola polo, mangas com detalhes coloridos</td></tr>
+            <tr><th>Bermuda</th><td>Tactel, cós elástico com cordão e faixa lateral</td></tr>
+            <tr><th>Grade</th><td>M, G e GG</td></tr>
+            <tr><th>Atacado</th><td>A partir de 6 peças, misturando qualquer produto da loja</td></tr>
           </table>
-          • Não usar alvejante · Não torcer · Passar ferro na parte interna
         </div>
       </div>
       <div class="acc-item">
@@ -363,31 +351,6 @@ footer p{line-height:1.7;margin-bottom:.5rem}
         <div class="acc-body">• 30 dias corridos a partir do recebimento<br>• Produto deve estar sem uso, com etiquetas<br>• Primeira troca com frete grátis<br>• Reembolso em até 5 dias úteis após aprovação</div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- AVALIAÇÕES -->
-<div class="section-wrap" id="reviews">
-  <p class="section-label">/ Avaliações</p>
-  <h2 class="section-title">O QUE FALAM DA PEÇA</h2>
-  <div class="rating-overview">
-    <div class="rating-big">
-      <strong>4.9</strong>
-      <div class="stars">★★★★★</div>
-      <small style="color:var(--mid);font-size:.73rem">238 avaliações</small>
-    </div>
-    <div class="rating-bars">
-      <div class="bar-row"><span>5★</span><div class="bar-bg"><div class="bar-fill" style="width:88%"></div></div><span>212</span></div>
-      <div class="bar-row"><span>4★</span><div class="bar-bg"><div class="bar-fill" style="width:8%"></div></div><span>18</span></div>
-      <div class="bar-row"><span>3★</span><div class="bar-bg"><div class="bar-fill" style="width:2%"></div></div><span>5</span></div>
-      <div class="bar-row"><span>2★</span><div class="bar-bg"><div class="bar-fill" style="width:1%"></div></div><span>2</span></div>
-      <div class="bar-row"><span>1★</span><div class="bar-bg"><div class="bar-fill" style="width:0.5%"></div></div><span>1</span></div>
-    </div>
-  </div>
-  <div class="reviews-grid">
-    <div class="review-card reveal"><div class="stars">★★★★★</div><blockquote>"Qualidade incrível! O tecido é muito macio e o caimento perfeito. Comprei G e ficou exatamente como esperava. Já é minha terceira compra."</blockquote><div class="reviewer"><div class="reviewer-avatar">ML</div><div class="reviewer-name"><strong>Mateus Lima</strong><small>@mateusdrip · São Paulo</small></div></div><div class="verified" style="margin-top:.45rem">✓ Compra verificada</div></div>
-    <div class="review-card reveal"><div class="stars">★★★★★</div><blockquote>"Chegou rapidíssimo, em 3 dias! Embalagem top, com papel de seda e cartão. A camiseta na cor preta é ainda melhor pessoalmente."</blockquote><div class="reviewer"><div class="reviewer-avatar">JS</div><div class="reviewer-name"><strong>Julia Santos</strong><small>@julinha.s · Rio de Janeiro</small></div></div><div class="verified" style="margin-top:.45rem">✓ Compra verificada</div></div>
-    <div class="review-card reveal"><div class="stars">★★★★★</div><blockquote>"Todo mundo pergunta onde comprei! A estampa é única, não encontro nada igual em outras marcas."</blockquote><div class="reviewer"><div class="reviewer-avatar">PR</div><div class="reviewer-name"><strong>Pedro Rocha</strong><small>@pedrostyle · Curitiba</small></div></div><div class="verified" style="margin-top:.45rem">✓ Compra verificada</div></div>
   </div>
 </div>
 
@@ -435,13 +398,13 @@ footer p{line-height:1.7;margin-bottom:.5rem}
 <div id="toast">✓ Produto adicionado!</div>
 
 <script>
-let selectedSize='',selectedColor='Preto',qty=1;
-function selectColor(el){document.querySelectorAll('.color-dot').forEach(d=>d.classList.remove('active'));el.classList.add('active');selectedColor=el.dataset.color;document.getElementById('color-name').textContent=selectedColor;}
+let selectedSize='',selectedColor='Polo vermelha + bermuda branca',qty=1;
+function selectColor(el){document.querySelectorAll('.color-dot').forEach(d=>d.classList.remove('active'));el.classList.add('active');selectedColor=el.dataset.color;document.getElementById('color-name').textContent=selectedColor;if(el.dataset.slide!==undefined&&typeof slides!=='undefined')goToSlide(+el.dataset.slide);}
 function selectSize(el){document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');selectedSize=el.dataset.size;document.getElementById('size-name').textContent=selectedSize;}
 function changeQty(d){qty=Math.max(1,qty+d);document.getElementById('qty-display').textContent=qty;}
 function buyWhats(){
   if(!selectedSize){showToast('⚠️ Selecione um tamanho!');return;}
-  const msg='Oi! Quero comprar: Urban Flow Tee (R$ 149,90) - Tam: '+selectedSize+', Cor: '+selectedColor+', Qtd: '+qty;
+  const msg='Oi! Quero comprar: Conjunto Polo + Bermuda - Cor: '+selectedColor+', Tam: '+selectedSize+', Qtd: '+qty;
   window.open('https://wa.me/5511956695338?text='+encodeURIComponent(msg),'_blank','noopener');
 }
 function calcFrete(){
